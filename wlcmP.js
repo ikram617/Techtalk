@@ -140,8 +140,8 @@ function verifier(FullName,Username,email,password){
   
 
   if(FullName.value.length<6 || FullName.value===null){
-    DialogTitre.textContent='Warning '
-    DialogContext.textContent='your Full name is last than 6 caracteres  !'
+    DialogTitre.textContent='Warning !'
+    DialogContext.textContent='your Full name is less than 6 caracteres  '
     dialog.showModal()
     document.querySelector('.inputFullname').style.boxShadow='0 0 8px red'
     return 0
@@ -152,7 +152,7 @@ function verifier(FullName,Username,email,password){
   }
   if(Username.value.length < 8 || Username.value===null){
     DialogTitre.textContent='Warning  !'
-    DialogContext.textContent='your user name is short  '
+    DialogContext.textContent='your user name is short'
     dialog.showModal()
 
     document.querySelector('.inputUsername').style.boxShadow='0 0 5px red'
@@ -165,7 +165,7 @@ function verifier(FullName,Username,email,password){
   if(! FormEmail(email.value) || email.value===null){
     // check que ce user name n'est exist pas deja dans la base de donnee
      DialogTitre.textContent='Warning  !'
-    DialogContext.textContent='please check your email again  '
+    DialogContext.textContent='please check your email again '
     document.querySelector('.inputEmail').style.boxShadow='0 0 5px red'
     return 0
   }

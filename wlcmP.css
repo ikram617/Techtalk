@@ -1,200 +1,188 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
   
-  body, html {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-  }
-  
-  .partOne ,
-   .partTwo {
-    background: url(./resource/background-transformed.jpeg) ;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 100vh;
-    width: 100vw;
-  }
-  .partOne nav ,
-  .partTwo nav {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      height: 10vh;
-      width: 100vw;
-  }
-  
-  .partOne ul ,
-  .partTwo ul{
-    display: flex; 
-    list-style: none; 
-    justify-content: space-around;
-    width: 100vw;
-  }
-  
-  .partOne li ,
-  .partTwo li {
-    padding: 10px 20px;
-    text-align: center;
-    font-size: 30px;
-  }
-  
-  
-  
-  .logo 
-  {
-    margin-right: auto;
-    cursor: none;  
-    color:white;
-    font-size: 30px;
-    cursor:default;
-  }
-  
-  .partOne li a,
-  .partTwo li a {
-    text-decoration: none;
-    color: white; 
-  }
-  
-  .partOne li,
-  .partTwo li {
-    text-decoration: none;
-    color: white;
-  }
-  .LS{
-    cursor: pointer;
-    text-decoration: none; 
-    color: white;
-  }
-  .LS a{
-    color: white;
-    text-decoration: none;
-  }
-  
-  .welcmeT ,
-  .abtusT{
-    padding-top: 15vh;
-    font-family: 'orbit';
-    font-size: 40px;  color:white ; 
-  }
-  
-  
-  .content {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
-  .welcomP {
-    max-width: 50vw;
-    height: 20vh;
-    font-family: 'orbit';
-    font-size: 24px;  
-     color:white ; 
-  }
-  .abtusP{
-    display: flex;
-    padding-left: 10vw;
-    width: 80vw;
-    height: 20vh;
-    font-family: 'orbit';
-    font-size: 20px;  
-     color:white ; 
-     align-items: flex-end;
-  }
-  img{
-   
-    width: 30vw;
-    height: 50vh;
-    border-radius: 20px;
-    object-fit: fill;
-    
-  }
-  
-  
-  .joinnow{
-    margin-top: 20vh;
-    background-color: white;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 13vw;
-    height: 5vh;
-    border-radius: 20px;
-    cursor: pointer;
-  }
-  
-  .joinnow p{
-   /* border: none;  */
-    font-size: 15px;
-    font-family: 'object sans',sans-serif;
-    font-weight: bold;
-  }
-  
-  
-  .joinnow i {
-   font-size: 30px;
-  }
-  
-  
-  
-  .logSign{
-    padding-top: 30px;
-    padding-left: 20px;
-    width: 100vw;
-    height: 100vh;
-    background-color: #0a1f44;
-  }
-  
-  .centerCont{
-    height: 95vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  dialog {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 20px;
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-    background: #ffffff;
-    z-index: 1000; 
-  }
-  
-  dialog::backdrop {
-    background: rgba(0, 0, 0, 0.5); 
-  }
-  
-  button {
-    margin-top: 10px;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  .close-btn {
-    background: #ff4b4b;
-    color: white;
-  }
-  .open-btn {
-    background: #007bff;
-    color: white;
-  }
-  .active{
-    opacity: 1;
-    pointer-events: Block;
-  }
-  
-  
-  .innactive{
-    opacity: 0;
-    pointer-events: none;
-  }
+}
+
+.partOne, .partTwo {
+  background: url(./resource/background-transformed.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100%;
+  width: 100%;
+}
+
+.partOne nav, .partTwo nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 10vh;
+  width: 100%;
+}
+
+.partOne ul, .partTwo ul {
+  display: flex;
+  list-style: none;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.partOne li, .partTwo li {
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 30px;
+}
+
+.logo {
+  margin-right: auto;
+  color: white;
+  font-size: 30px;
+  cursor: default;
+}
+
+.partOne li a, .partTwo li a {
+  text-decoration: none;
+  color: white;
+}
+
+.LS {
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+}
+
+.LS a {
+  color: white;
+  text-decoration: none;
+}
+
+.welcmeT, .abtusT {
+  padding-top: 15vh;
+  font-family: 'orbit', sans-serif;
+  font-size: 40px;
+  color: white;
+}
+
+.content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.welcomP {
+  max-width: 50vw;
+  height: 20vh;
+  font-family: 'orbit', sans-serif;
+  font-size: 24px;
+  color: white;
+}
+
+.abtusP {
+  display: flex;
+  padding-left: 10vw;
+  width: 80vw;
+  height: 20vh;
+  font-family: 'orbit', sans-serif;
+  font-size: 20px;
+  color: white;
+  align-items: flex-end;
+}
+
+img {
+  width: 30vw;
+  height: 50vh;
+  border-radius: 20px;
+  object-fit: cover; /* Prevent image overflow */
+}
+
+.joinnow {
+  margin-top: 20vh;
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 13vw;
+  height: 5vh;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.joinnow p {
+  font-size: 15px;
+  font-family: 'object sans', sans-serif;
+  font-weight: bold;
+}
+
+.joinnow i {
+  font-size: 30px;
+}
+
+.logSign {
+  padding-top: 30px;
+  padding-left: 20px;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0a1f44;
+  overflow: hidden; /* Prevent double scroll */
+}
+
+.centerCont {
+  height: 95vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  background: #ffffff;
+  z-index: 1000;
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.close-btn {
+  background: #ff4b4b;
+  color: white;
+}
+
+.open-btn {
+  background: #007bff;
+  color: white;
+}
+
+.active {
+  opacity: 1;
+  pointer-events: block;
+}
+
+.innactive {
+  opacity: 0;
+  pointer-events: none;
+}
