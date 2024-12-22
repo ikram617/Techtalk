@@ -91,6 +91,7 @@ var FullName = document.querySelector('input[placeholder="Full Name"]')
   var Username = document.querySelector('input[placeholder="Username"]')
   var emailSign = document.querySelector('.emailSign')
   var passwordSign = document.querySelector('.passwordSign')
+  var fieldSelected = document.querySelector('.form-group select')
   var emailLog = document.querySelector('.emailLog')
   var passwordLog = document.querySelector('.passwordLog')
 
@@ -101,8 +102,9 @@ const dialog = document.getElementById("myDialog")
 const closeButton = document.querySelector(".close-btnDialog")
 let  DialogTitre = document.querySelector('#myDialog h3')
 let DialogContext = document.querySelector('#myDialog p')
+
 SignFormButton.addEventListener('click',()=>{
-  if(verifier(FullName,Username,emailSign,passwordSign)===1){
+  if(verifierSign(FullName,Username,emailSign,passwordSign , fieldSelected)===1){
     DialogTitre.textContent='Welcome to TechTalk!'
     DialogContext.textContent='Bravo ! your Sign in was made Successfully'
     dialog.showModal()
@@ -110,17 +112,20 @@ SignFormButton.addEventListener('click',()=>{
     Username.value=''
     emailSign.value=''
     passwordSign.value=''
-    window.location.href=''   // send user to page pricipale
+
+   // window.location.href=''   // send user to page pricipale   and it waits a 3 sec before send to pageP
   }
 })
 
 
 // log in 
 LogFormButton.addEventListener('click',()=>{
-  // verifier que ce user exist et mot passe correct par la base de donne si oui
+  if(verifierLog(emailLog , passwordLog)===1)
+  {
   emailLog.value=''
   passwordLog.value=''
-   window.location.href=''
+ //  window.location.href=''
+  }
 })
 
 closeButton.addEventListener("click", () => {
@@ -136,12 +141,24 @@ function FormEmail(email){
   return email.endsWith("@gmail.com")
 }
 
-function verifier(FullName,Username,email,password){
-  
-
-  if(FullName.value.length<6 || FullName.value===null){
+function verifierSign(FullName,Username,email,password, field){
+  if(FullName.value==='' && Username.value==='' && email.value==='' && password.value==='' && field.value==="false" )
+  {    
     DialogTitre.textContent='Warning !'
-    DialogContext.textContent='your Full name is less than 6 caracteres  '
+    DialogContext.textContent='Please fill in the form  '
+    dialog.showModal()
+     document.querySelector('.inputFullname').style.boxShadow='0 0 8px red'
+     document.querySelector('.inputUsername').style.boxShadow='0 0 5px red'
+     document.querySelector('.inputEmail').style.boxShadow='0 0 5px red'
+     document.querySelector('.inputPassword').style.boxShadow='0 0 5px red'
+
+  }
+  else
+  { 
+  if(FullName.value.length<6 || FullName.value===''){
+    console.log(`the data is : ${FullName.value}` )
+    DialogTitre.textContent='Warning !'
+    DialogContext.textContent='Your full name must be at least 6 characters long. Please try again.'
     dialog.showModal()
     document.querySelector('.inputFullname').style.boxShadow='0 0 8px red'
     return 0
@@ -150,9 +167,9 @@ function verifier(FullName,Username,email,password){
     document.querySelector('.inputFullname').style.boxShadow="none" 
   
   }
-  if(Username.value.length < 8 || Username.value===null){
+  if(Username.value.length < 8 || Username.value===''){
     DialogTitre.textContent='Warning  !'
-    DialogContext.textContent='your user name is short'
+    DialogContext.textContent='Your username must be at least 8 characters long. Please try again.'
     dialog.showModal()
 
     document.querySelector('.inputUsername').style.boxShadow='0 0 5px red'
@@ -162,10 +179,10 @@ function verifier(FullName,Username,email,password){
   else {
     document.querySelector('.inputUsername').style.boxShadow="none"
   }
-  if(! FormEmail(email.value) || email.value===null){
-    // check que ce user name n'est exist pas deja dans la base de donnee
+  if(! FormEmail(email.value) || email.value===''){
+    // check que ce user  n'est exist pas deja dans la base de donnee  et si il existe affiche un msg dialog
      DialogTitre.textContent='Warning  !'
-    DialogContext.textContent='please check your email again '
+    DialogContext.textContent='Please enter a valid email address.'
     document.querySelector('.inputEmail').style.boxShadow='0 0 5px red'
     return 0
   }
@@ -173,15 +190,54 @@ function verifier(FullName,Username,email,password){
     document.querySelector('.inputEmail').style.boxShadow="none"
   }
 
-  if(password.value < 8 || password.value ===null ){
+  if(password.value.length < 8 || password.value ==='' ){
+
      DialogTitre.textContent='Warning  !'
-    DialogContext.textContent='your password should be longer than 8 caracteres '
+    DialogContext.textContent='Your password must be at least 8 characters long. Please try again. '
     document.querySelector('.inputPassword').style.boxShadow='0 0 5px red'
+    dialog.showModal()
     return 0
   }
   else {
     document.querySelector('.inputPassword').style.boxShadow="none"
   }
+  if(field.value==='false')
+  {
+    DialogTitre.textContent='Warning  !'
+    DialogContext.textContent='Please select a valid field. '
+    document.querySelector('.form-group select').style.boxShadow='0 0 5px red'
+   dialog.showModal()
+   return 0 
+  }
+  else {
+    document.querySelector('.form-group select').style.boxShadow='none'
+
+  }
   return 1 
+}
+}
+
+
+function verifierLog(email , password)
+{
+  if(email.value==='' && password.value==='')
+  {
+    DialogTitre.textContent='Warning !'
+    DialogContext.textContent='Please fill in the form  '
+    dialog.showModal()
+     document.querySelector('.emailLog').style.boxShadow='0 0 8px red'
+     document.querySelector('.passwordLog').style.boxShadow='0 0 5px red'
+     return 0 
+  }
+  else 
+  {  
+     document.querySelector('.emailLog').style.boxShadow='none'
+     document.querySelector('.passwordLog').style.boxShadow='none'
+    // si  ce email  n'est exist pas deja dans la base de donnee  et si il existe affiche un msg dialog "please sign in " et retourne 1
+    // si  ce password  est incorrect il affiche un msg dialog "password incorrect  " et retourne 1
+    // sinon 
+    return 1 
+  
+  }
 }
 
