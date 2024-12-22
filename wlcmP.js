@@ -184,6 +184,7 @@ function verifierSign(FullName,Username,email,password, field){
      DialogTitre.textContent='Warning  !'
     DialogContext.textContent='Please enter a valid email address.'
     document.querySelector('.inputEmail').style.boxShadow='0 0 5px red'
+    dialog.showModal()
     return 0
   }
   else {
