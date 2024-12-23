@@ -8,6 +8,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbit&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="./styles.css">
+    <style>
+        .error-message {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            padding: 10px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <div class="partOne">
@@ -48,6 +60,8 @@
                     <button id="sign-in-btn" class="activeLine">Sign In</button>
                     <button id="log-in-btn">Log In</button>
                 </div>
+                <!-- Error Message Section -->
+                <div id="error-message" class="form-group"></div>
                 <!-- Sign-In Form -->
                 <div id="sign-in-form" class="form active">
                     <form action="wlcmP.php" method="POST">
@@ -82,7 +96,7 @@
 
                 <!-- Log-In Form -->
                 <div id="log-in-form" class="form innactive">
-                    <form action="login.php" method="POST">
+                    <form id="login-form" method="POST">
                         <div class="form-group">
                             <input type="text" name="username" placeholder="Username" class="usernameLog" required>
                         </div>
@@ -90,7 +104,7 @@
                             <input type="password" name="password" placeholder="Password" class="passwordLog" required>
                         </div>
                         <div class="form-group">
-                            <input type="submit" name="login" value="Log In" id="submit-log-in-btn">
+                            <input type="submit" value="Log In" id="submit-log-in-btn">
                         </div>
                     </form>
                 </div>
@@ -99,5 +113,29 @@
     </div>
 
     <script src="./wlcmP.js"></script>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            var form = e.target;
+            var formData = new FormData(form);
+
+            fetch('login.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = 'PageP.html';
+                } else {
+                    document.getElementById('error-message').innerHTML = '<div class="error-message">' + data.message + '</div>';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
 </body>
 </html>

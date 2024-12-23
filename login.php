@@ -2,6 +2,10 @@
 session_start();
 include('db.php');
 
+header('Content-Type: application/json');
+
+$response = ['success' => false, 'message' => ''];
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
@@ -10,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $result = $conn->query($sql);
 
     if ($result === FALSE) {
-        echo "Error in SQL query: " . $conn->error;
+        $response['message'] = "There was an issue connecting to the database. Please try again later.";
     } else {
         if ($result->num_rows > 0) {
             $user = $result->fetch_assoc();
@@ -19,20 +23,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['fullname'] = $user['fullname'];
                 $_SESSION['username'] = $user['username'];
-                $_SESSION['login_success'] = "Good login";
-
-                header("Location: dashboard.php");
-                exit();
+                $_SESSION['email'] = $user['email'];
+                $response['success'] = true;
+                $response['message'] = "Login successful!";
             } else {
-                echo "Incorrect username or password.";
+                $response['message'] = "The username or password you entered is incorrect. Please try again.";
             }
         } else {
-            echo "No user found with that username.";
+            $response['message'] = "No account found with that username. Please try again.";
         }
     }
 } else {
-    echo "Invalid request method.";
+    $response['message'] = "Invalid request method.";
 }
+
+echo json_encode($response);
 
 $conn->close();
 ?>

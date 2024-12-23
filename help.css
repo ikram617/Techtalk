@@ -61,3 +61,14 @@
     border-radius: 5px;
     margin-bottom: 20px;
 }
+#error-message p {
+  color: red;
+  font-weight: bold;
+  background-color: #f8d7da;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+
