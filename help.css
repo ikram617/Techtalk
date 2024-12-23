@@ -54,3 +54,10 @@
    justify-content: center;
    align-items:center;
   }
+  .success-message {
+    background-color: #dff0d8;
+    color: #3c763d;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
