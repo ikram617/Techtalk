@@ -52,7 +52,7 @@
 .cercle i,
 .searchBar i{
     font-size: 25px;
-    
+    margin: 5px;
 }
 
 .logout{
@@ -106,12 +106,17 @@
 
 .categories{
     width: 25vw;
-    height: 70vh;
+    height: 75vh;
     background-color: #DFE6EB;
     border : 2px solid black;
     display: flex;
     justify-content: center;
     padding: 1vw;
+    margin-left: 1vw;
+    position: fixed;
+    flex-wrap: wrap;
+
+    
 }
 
 .CategoriesTitle{
@@ -124,5 +129,49 @@
     color: white;
     font-size: 25px;
     border-radius: 20px;
-
+    
 }
+
+
+
+.CategoriesNames li {
+    height: 7vh;
+    width: 15vw;
+    position: relative;
+    overflow: hidden;
+    margin: 4%;
+    border-radius: 20px;
+}
+
+.AiPhoto ,.dataSPhoto {
+   height: 100%;
+   width: 100%;
+   object-fit: cover;
+   object-position: top;
+}
+
+ 
+ .CyberPhoto,
+ .FullSPhoto  ,
+ .CloudPhoto{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+ }
+
+ .help{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15vw;
+    height: 5vh;
+   
+ }
+ .help button {
+    width: 15vw;
+    height: 5vh;
+    border: none ;
+    font-size: 25px;
+    background-color: #878CAB;
+ }

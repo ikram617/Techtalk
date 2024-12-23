@@ -98,8 +98,7 @@ SignFormButton.addEventListener('click', () => {
     Username.value = '';
     emailSign.value = '';
     passwordSign.value = '';
-
-    // window.location.href = ''; // Uncomment to redirect after sign-in
+     window.location.href = '/PageP.html';
   }
 });
 
@@ -108,7 +107,7 @@ LogFormButton.addEventListener('click', () => {
   if (verifierLog(emailLog, passwordLog) === 1) {
     emailLog.value = '';
     passwordLog.value = '';
-    // window.location.href = ''; // Uncomment to redirect after login
+    window.location.href ="/PageP.html"; 
   }
 });
 
@@ -127,6 +126,7 @@ function FormEmail(email) {
 
 function verifierSign(FullName, Username, email, password, field) {
   if (FullName.value === '' && Username.value === '' && email.value === '' && password.value === '' && field.value === "false") {
+    
     DialogTitre.textContent = 'Warning!';
     DialogContext.textContent = 'Please fill in the form.';
     dialog.showModal();
