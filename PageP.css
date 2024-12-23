@@ -101,6 +101,28 @@
     padding: 1vw;
     padding: 10px;
     border-radius: 20px;
-
+    outline: none;
 }
 
+.categories{
+    width: 25vw;
+    height: 70vh;
+    background-color: #DFE6EB;
+    border : 2px solid black;
+    display: flex;
+    justify-content: center;
+    padding: 1vw;
+}
+
+.CategoriesTitle{
+    width: 15vw;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #091D31;
+    color: white;
+    font-size: 25px;
+    border-radius: 20px;
+
+}
