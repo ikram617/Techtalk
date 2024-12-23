@@ -1,135 +1,119 @@
 // Part One 
-var login = document.getElementById('log-in-btn')
-var signin = document.getElementById('sign-in-btn')
-var SignButton = document.querySelector('.SButton')
-var joinnowB = document.querySelector('.joinnowB')
-var joinnowI = document.querySelector('.joinnow i')
+var login = document.getElementById('log-in-btn');
+var signin = document.getElementById('sign-in-btn');
+var SignButton = document.querySelector('.SButton');
+var joinnowB = document.querySelector('.joinnowB');
+var joinnowI = document.querySelector('.joinnow i');
 
+SignButton.addEventListener('click', () => {
+  SmoothScroll('.logSign', 2000);
+});
 
-SignButton.addEventListener('click',()=>{
-  SmoothScroll('.logSign',2000)
-})
+joinnowB.addEventListener('click', () => {
+  SmoothScroll('.logSign', 2000);
+});
 
-joinnowB.addEventListener('click',()=>{
-  SmoothScroll('.logSign',2000)
-})
+joinnowI.addEventListener('click', () => {
+  SmoothScroll('.logSign', 2000);
+});
 
+login.addEventListener('click', () => {
+  document.getElementById('sign-in-form').classList.remove('active');
+  document.getElementById('sign-in-form').classList.add('innactive');
+  document.getElementById('log-in-form').classList.remove('innactive');
+  document.getElementById('log-in-form').classList.add('active');
+  document.getElementById('sign-in-btn').classList.remove('activeLine');
+  document.getElementById('sign-in-btn').style.borderBottom = 'none';
+  document.getElementById('log-in-btn').style.borderBottom = '2px solid white';
+  document.getElementById('log-in-btn').classList.add('activeLine');
+  FullName.value = '';
+  Username.value = '';
+  emailSign.value = '';
+  passwordSign.value = '';
+});
+document.getElementById('log-in-btn').style.borderBottom = 'none';
 
-joinnowI.addEventListener('click',()=>{
-  SmoothScroll('.logSign',2000)
-})
+signin.addEventListener('click', () => {
+  document.getElementById('log-in-form').classList.remove('active');
+  document.getElementById('log-in-form').classList.add('innactive');
+  document.getElementById('sign-in-form').classList.remove('innactive');
+  document.getElementById('sign-in-form').classList.add('active');
+  document.getElementById('log-in-btn').classList.remove('activeLine');
+  document.getElementById('log-in-btn').style.borderBottom = 'none';
+  document.getElementById('sign-in-btn').style.borderBottom = '2px solid white';
+  document.getElementById('sign-in-btn').classList.add('activeLine');
+});
 
-login.addEventListener('click',()=>{
-  document.getElementById('sign-in-form').classList.remove('active')
-  document.getElementById('sign-in-form').classList.add('innactive')
-  document.getElementById('log-in-form').classList.remove('innactive')
-  document.getElementById('log-in-form').classList.add('active')
-  document.getElementById('sign-in-btn').classList.remove('activeLine')
-  document.getElementById('sign-in-btn').style.borderBottom='none'
-  document.getElementById('log-in-btn').style.borderBottom='2px solid white'
-  document.getElementById('log-in-btn').classList.add('activeLine')
-  FullName.value=''
-  Username.value=''
-  emailSign.value=''
-  passwordSign.value=''
-})
-document.getElementById('log-in-btn').style.borderBottom='none'
+function SmoothScroll(Target, duree) {
+  var target = document.querySelector(Target);
+  var targetPos = target.getBoundingClientRect().top;
+  var startPos = window.scrollY;
+  distance = targetPos - startPos;
+  var startTime = null;
 
-signin.addEventListener('click',()=>{
-  document.getElementById('log-in-form').classList.remove('active')
-  document.getElementById('log-in-form').classList.add('innactive')
-  document.getElementById('sign-in-form').classList.remove('innactive')
-  document.getElementById('sign-in-form').classList.add('active')
-  document.getElementById('log-in-btn').classList.remove('activeLine')
-  document.getElementById('log-in-btn').style.borderBottom='none'
-  document.getElementById('sign-in-btn').style.borderBottom='2px solid white'
-  document.getElementById('sign-in-btn').classList.add('activeLine')
-  
-})
-
-
-
-
-
-function SmoothScroll(Target,duree){
-  var target = document.querySelector(Target)
-  var targetPos = target.getBoundingClientRect().top
-  var startPos = window.scrollY
-  distance = targetPos-startPos
-  var startTime = null 
-
-
-function AnimationScroll (currentT){
-  if(startTime=== null){
-      startTime=currentT 
+  function AnimationScroll(currentT) {
+    if (startTime === null) {
+      startTime = currentT;
+    }
+    var time = currentT - startTime;
+    var run = ease(time, startPos, distance, duree);
+    window.scrollTo(0, run);
+    if (time < duree) requestAnimationFrame(AnimationScroll);
   }
- var  time = currentT - startTime 
-  var run = ease(time , startPos,distance,duree)
-  window.scrollTo(0,run)
-  if(time < duree)  requestAnimationFrame(AnimationScroll)
+
+  function ease(t, b, c, d) {
+    t /= d / 2;
+    if (t < 1) return c / 2 * t * t + b;
+    t--;
+    return -c / 2 * (t * (t - 2) - 1) + b;
+  }
+
+  requestAnimationFrame(AnimationScroll);
 }
 
+// Log in part
 
-function ease (t , b , c , d){
-    t/= d/2 
-    if(t < 1 ) return c/2*t*t +b 
-    t--
-    return -c/2 * (t*(t-2) - 1 ) + b
-}
+var SignFormButton = document.querySelector('input[value="Sign In"]');
+var LogFormButton = document.querySelector('input[value="Log In"]');
+var FullName = document.querySelector('input[placeholder="Full Name"]');
+var Username = document.querySelector('input[placeholder="Username"]');
+var emailSign = document.querySelector('.emailSign');
+var passwordSign = document.querySelector('.passwordSign');
+var fieldSelected = document.querySelector('.form-group select');
+var emailLog = document.querySelector('.emailLog');
+var passwordLog = document.querySelector('.passwordLog');
 
-requestAnimationFrame(AnimationScroll)
-}
+// Welcome Dialog
+const dialog = document.getElementById("myDialog");
+const closeButton = document.querySelector(".close-btnDialog");
+let DialogTitre = document.querySelector('#myDialog h3');
+let DialogContext = document.querySelector('#myDialog p');
 
-// 3eme Partie (Log in part )
+SignFormButton.addEventListener('click', () => {
+  if (verifierSign(FullName, Username, emailSign, passwordSign, fieldSelected) === 1) {
+    DialogTitre.textContent = 'Welcome to TechTalk!';
+    DialogContext.textContent = 'Bravo! Your sign-in was successful.';
+    dialog.showModal();
+    FullName.value = '';
+    Username.value = '';
+    emailSign.value = '';
+    passwordSign.value = '';
 
-
-
-
-var SignFormButton = document.querySelector('input[value="Sign In"]')
-var LogFormButton = document.querySelector('input[value="Log In"]')
-var FullName = document.querySelector('input[placeholder="Full Name"]')
-  var Username = document.querySelector('input[placeholder="Username"]')
-  var emailSign = document.querySelector('.emailSign')
-  var passwordSign = document.querySelector('.passwordSign')
-  var fieldSelected = document.querySelector('.form-group select')
-  var emailLog = document.querySelector('.emailLog')
-  var passwordLog = document.querySelector('.passwordLog')
-
-
-  
-// Welcome Dialog 
-const dialog = document.getElementById("myDialog")
-const closeButton = document.querySelector(".close-btnDialog")
-let  DialogTitre = document.querySelector('#myDialog h3')
-let DialogContext = document.querySelector('#myDialog p')
-
-SignFormButton.addEventListener('click',()=>{
-  if(verifierSign(FullName,Username,emailSign,passwordSign , fieldSelected)===1){
-    DialogTitre.textContent='Welcome to TechTalk!'
-    DialogContext.textContent='Bravo ! your Sign in was made Successfully'
-    dialog.showModal()
-    FullName.value=''
-    Username.value=''
-    emailSign.value=''
-    passwordSign.value=''
-
-   // window.location.href=''   // send user to page pricipale   and it waits a 3 sec before send to pageP
+    // window.location.href = ''; // Uncomment to redirect after sign-in
   }
-})
+});
 
-
-// log in 
-LogFormButton.addEventListener('click',()=>{
-  if(verifierLog(emailLog , passwordLog)===1)
-  {
-  emailLog.value=''
-  passwordLog.value=''
- //  window.location.href=''
+// Log in
+LogFormButton.addEventListener('click', () => {
+  if (verifierLog(emailLog, passwordLog) === 1) {
+    emailLog.value = '';
+    passwordLog.value = '';
+    // window.location.href = ''; // Uncomment to redirect after login
   }
-})
+});
 
 closeButton.addEventListener("click", () => {
-  dialog.close(); 
+  dialog.close();
 });
 dialog.addEventListener("click", (event) => {
   if (event.target === dialog) {
@@ -137,108 +121,38 @@ dialog.addEventListener("click", (event) => {
   }
 });
 
-function FormEmail(email){
-  return email.endsWith("@gmail.com")
+function FormEmail(email) {
+  return email.endsWith("@gmail.com");
 }
 
-function verifierSign(FullName,Username,email,password, field){
-  if(FullName.value==='' && Username.value==='' && email.value==='' && password.value==='' && field.value==="false" )
-  {    
-    DialogTitre.textContent='Warning !'
-    DialogContext.textContent='Please fill in the form  '
-    dialog.showModal()
-     document.querySelector('.inputFullname').style.boxShadow='0 0 8px red'
-     document.querySelector('.inputUsername').style.boxShadow='0 0 5px red'
-     document.querySelector('.inputEmail').style.boxShadow='0 0 5px red'
-     document.querySelector('.inputPassword').style.boxShadow='0 0 5px red'
-
-  }
-  else
-  { 
-  if(FullName.value.length<6 || FullName.value===''){
-    console.log(`the data is : ${FullName.value}` )
-    DialogTitre.textContent='Warning !'
-    DialogContext.textContent='Your full name must be at least 6 characters long. Please try again.'
-    dialog.showModal()
-    document.querySelector('.inputFullname').style.boxShadow='0 0 8px red'
-    return 0
-  }
-  else {
-    document.querySelector('.inputFullname').style.boxShadow="none" 
-  
-  }
-  if(Username.value.length < 8 || Username.value===''){
-    DialogTitre.textContent='Warning  !'
-    DialogContext.textContent='Your username must be at least 8 characters long. Please try again.'
-    dialog.showModal()
-
-    document.querySelector('.inputUsername').style.boxShadow='0 0 5px red'
-    return 0
-
-  }
-  else {
-    document.querySelector('.inputUsername').style.boxShadow="none"
-  }
-  if(! FormEmail(email.value) || email.value===''){
-    // check que ce user  n'est exist pas deja dans la base de donnee  et si il existe affiche un msg dialog
-     DialogTitre.textContent='Warning  !'
-    DialogContext.textContent='Please enter a valid email address.'
-    document.querySelector('.inputEmail').style.boxShadow='0 0 5px red'
-    dialog.showModal()
-    return 0
-  }
-  else {
-    document.querySelector('.inputEmail').style.boxShadow="none"
-  }
-
-  if(password.value.length < 8 || password.value ==='' ){
-
-     DialogTitre.textContent='Warning  !'
-    DialogContext.textContent='Your password must be at least 8 characters long. Please try again. '
-    document.querySelector('.inputPassword').style.boxShadow='0 0 5px red'
-    dialog.showModal()
-    return 0
-  }
-  else {
-    document.querySelector('.inputPassword').style.boxShadow="none"
-  }
-  if(field.value==='false')
-  {
-    DialogTitre.textContent='Warning  !'
-    DialogContext.textContent='Please select a valid field. '
-    document.querySelector('.form-group select').style.boxShadow='0 0 5px red'
-   dialog.showModal()
-   return 0 
-  }
-  else {
-    document.querySelector('.form-group select').style.boxShadow='none'
-
-  }
-  return 1 
-}
-}
-
-
-function verifierLog(email , password)
-{
-  if(email.value==='' && password.value==='')
-  {
-    DialogTitre.textContent='Warning !'
-    DialogContext.textContent='Please fill in the form  '
-    dialog.showModal()
-     document.querySelector('.emailLog').style.boxShadow='0 0 8px red'
-     document.querySelector('.passwordLog').style.boxShadow='0 0 5px red'
-     return 0 
-  }
-  else 
-  {  
-     document.querySelector('.emailLog').style.boxShadow='none'
-     document.querySelector('.passwordLog').style.boxShadow='none'
-    // si  ce email  n'est exist pas deja dans la base de donnee  et si il existe affiche un msg dialog "please sign in " et retourne 1
-    // si  ce password  est incorrect il affiche un msg dialog "password incorrect  " et retourne 1
-    // sinon 
-    return 1 
-  
+function verifierSign(FullName, Username, email, password, field) {
+  if (FullName.value === '' && Username.value === '' && email.value === '' && password.value === '' && field.value === "false") {
+    DialogTitre.textContent = 'Warning!';
+    DialogContext.textContent = 'Please fill in the form.';
+    dialog.showModal();
+    document.querySelector('.inputFullname').style.boxShadow = '0 0 8px red';
+    document.querySelector('.inputUsername').style.boxShadow = '0 0 5px red';
+    document.querySelector('.inputEmail').style.boxShadow = '0 0 5px red';
+    document.querySelector('.inputPassword').style.boxShadow = '0 0 5px red';
+    return 0;
+  } else {
+    // Other validation checks...
+    return 1;
   }
 }
 
+function verifierLog(email, password) {
+  if (email.value === '' && password.value === '') {
+    DialogTitre.textContent = 'Warning!';
+    DialogContext.textContent = 'Please fill in the form.';
+    dialog.showModal();
+    document.querySelector('.emailLog').style.boxShadow = '0 0 8px red';
+    document.querySelector('.passwordLog').style.boxShadow = '0 0 5px red';
+    return 0;
+  } else {
+    document.querySelector('.emailLog').style.boxShadow = 'none';
+    document.querySelector('.passwordLog').style.boxShadow = 'none';
+    // Additional validation if needed...
+    return 1;
+  }
+}

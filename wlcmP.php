@@ -20,7 +20,7 @@ if (isset($_POST['signup'])) {
     // Execute the query
     if ($conn->query($sql) === TRUE) {
         echo "Sign-up successful!";
-        // Optionally redirect to login page
+        // Redirect to login page
         header("Location: login.php");
         exit();
     } else {
@@ -30,3 +30,4 @@ if (isset($_POST['signup'])) {
 
 $conn->close();
 ?>
+
