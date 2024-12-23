@@ -1,17 +1,16 @@
-
-
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Welcome to TechTalk</title>
-        <meta charset="UTF-8">
-        <link href="./wlcmP.css" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Orbit&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"  />
-        <link rel="stylesheet" href="./styles.css">
-    </head>
-    <body>
-     <div class="partOne">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to TechTalk</title>
+    <link href="./wlcmP.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbit&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <div class="partOne">
         <nav>
             <ul>
                 <li class="logo">TechTalk</li>
@@ -19,22 +18,18 @@
                 <li class="LS"><a href="./help.html">Help</a></li>
             </ul>
         </nav>
-         <p class="welcmeT">{ Welcome } to TechTalk</p>
-        <div class="content"> 
-         <span class="welcomP">Where developers meet to discuss the latest innovations! Join us as we dive into cutting-edge technology, share insights . Whether you’re a seasoned pro or just starting out, there's a place for you here! ;</span>
-         <div class="joinnow">
-            <p class="joinnowB">join us now</p>
-            <i class="fa-solid fa-arrow-right"></i>
-         </div>
-         <img src="./resource/img1.webp" alt=""> 
-         
+        <p class="welcmeT">{ Welcome } to TechTalk</p>
+        <div class="content">
+            <span class="welcomP">Where developers meet to discuss the latest innovations! Join us as we dive into cutting-edge technology, share insights. Whether you’re a seasoned pro or just starting out, there's a place for you here!</span>
+            <div class="joinnow">
+                <p class="joinnowB">join us now</p>
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+            <img src="./resource/img1.webp" alt="">
         </div>
-   
-        
-       
+    </div>
 
-     </div>
-   <div class="partTwo">
+    <div class="partTwo">
         <nav>
             <ul>
                 <li class="logo">TechTalk</li>
@@ -43,63 +38,66 @@
         </nav>
         <p class="abtusT">{ About us }</p>
         <span class="abtusP">As passionate developers, we realized there wasn't a platform where like-minded professionals could gather to discuss the latest innovations in software. Driven by this gap, we created TechTalk, a space designed by developers, for developers, to share ideas and grow together.</span>
-     </div>
-      <div class="logSign">
-      <span class="logo">TechTalk</span>
-      <div class="centerCont">
-      <div class="container">
-        <div class="tabs">
-            <button id="sign-in-btn" class="activeLine">Sign In</button>
-            <button id="log-in-btn">Log In</button>
-        </div>
-        <div id="sign-in-form" class="form active">
-            <div class="form-group inputFullname">
-                <input type="text" placeholder="Full Name" required>
-            </div>
-            <div class="form-group inputUsername">
-                <input type="text" placeholder="Username" required>
-            </div>
-            <div class="form-group inputEmail">
-                <input type="email" placeholder="Email" class="emailSign" required>
-            </div>
-            <div class="form-group">
-                <select required >
-                    <option value="false" disabled selected>Select your Field</option>
-                    <option value="AI">AI</option>
-                    <option value="Cyber Security">Cyber Security</option>
-                    <option value="Data science">Data Science</option>
-                    <option value="Full stack">Full Stack</option>
-                    <option value="Cloud Computing">Cloud Computing</option>
-                    <option value="other">Other</option>
-                </select>
-            </div>
-            <div class="form-group inputPassword">
-                <input type="password" placeholder="Password" class="passwordSign" required>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Sign In" id="submit-sign-in-btn">
-            </div>
-        </div>
-        <div id="log-in-form" class="form innactive">
-            <div class="form-group">
-                <input type="email" placeholder="Email" class="emailLog" required>
-            </div>
-            <div class="form-group">
-                <input type="password" placeholder="Password" class="passwordLog" required>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Log In" id="submit-log-in-btn">
-            </div>
-        </div>
-        <dialog id="myDialog">
-            <h3></h3>
-            <p>Bravo ! you are now signed in  enjoy your experience</p>
-            <button class="close-btnDialog">Close</button>
-          </dialog>
     </div>
-</div>
 
-     </div>
-     <script src="./wlcmP.js"></script>
-    </body>
+    <div class="logSign">
+        <span class="logo">TechTalk</span>
+        <div class="centerCont">
+            <div class="container">
+                <div class="tabs">
+                    <button id="sign-in-btn" class="activeLine">Sign In</button>
+                    <button id="log-in-btn">Log In</button>
+                </div>
+                <!-- Sign-In Form -->
+                <div id="sign-in-form" class="form active">
+                    <form action="wlcmP.php" method="POST">
+                        <div class="form-group inputFullname">
+                            <input type="text" name="fullname" placeholder="Full Name" required>
+                        </div>
+                        <div class="form-group inputUsername">
+                            <input type="text" name="username" placeholder="Username" required>
+                        </div>
+                        <div class="form-group inputEmail">
+                            <input type="email" name="email" placeholder="Email" class="emailSign" required>
+                        </div>
+                        <div class="form-group">
+                            <select name="field" required>
+                                <option value="" disabled selected>Select your Field</option>
+                                <option value="AI">AI</option>
+                                <option value="Cyber Security">Cyber Security</option>
+                                <option value="Data Science">Data Science</option>
+                                <option value="Full Stack">Full Stack</option>
+                                <option value="Cloud Computing">Cloud Computing</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group inputPassword">
+                            <input type="password" name="password" placeholder="Password" class="passwordSign" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="signup" value="Sign In" id="submit-sign-in-btn">
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Log-In Form -->
+                <div id="log-in-form" class="form innactive">
+                    <form action="login.php" method="POST">
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Email" class="emailLog" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password" placeholder="Password" class="passwordLog" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="login" value="Log In" id="submit-log-in-btn">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./wlcmP.js"></script>
+</body>
 </html>
