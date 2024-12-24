@@ -53,6 +53,7 @@
 .searchBar i{
     font-size: 25px;
     margin: 5px;
+    cursor: pointer;
 }
 
 .logout{
@@ -70,7 +71,7 @@
     width: 6vw;
     height: auto;
     font-size: 20px;
-    color: aliceblue;  
+    color: white;  
      background-color: red;
 }
 
@@ -158,18 +159,7 @@
      cursor: pointer;
 }
 
-.active {
-    position: relative;
-    z-index: 10;
-    pointer-events: all;
 
-}
-
-.innactive {
-    position: relative;
-    z-index: -1;
-    pointer-events: none;
-}
 
 
 .AiPhoto ,.dataSPhoto {
@@ -199,7 +189,7 @@
     align-items: center;
     width: 15vw;
     height: 5vh;
-   
+    
  }
  .help button {
     width: 15vw;
@@ -207,6 +197,7 @@
     border: none ;
     font-size: 25px;
     background-color: #878CAB;
+    cursor: pointer;
  }
 
 
@@ -218,13 +209,85 @@
     right: 3%; 
     position: fixed;
      width: 10%;
-     height: 15%;
+     height: 17%;
      background-color: #D46910;
-     box-shadow: 2px #D46910;
+     box-shadow: 2px 2px 5px  #D46910, 2px 2px 5px  #D46910;
      border-radius: 50%;
+     cursor: pointer;
+     animation: move 1s infinite alternate;
+
  }
 
  .addPost i {
     color: white;
-    font-size: 40px;
+    font-size: 45px;
  }
+ .newPost{
+    width: 30vw;
+    min-height: 25vh;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #DFE6EB;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 15px;
+ }
+
+
+textarea{
+    width: 27vw;
+    height: 20vh;
+    border: 1px solid black;
+    padding: 15px;
+    border-radius: 10px;
+     margin-top: 20px ;
+     margin-bottom: 20px;
+}
+
+.buttonsPost {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.buttonsPost button{
+    height: auto ;
+    width: 6vw;
+    border-radius: 10px;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.BackButton{
+    background-color: red;
+}
+.AddButton{
+    background-color: green;
+}
+
+.active {
+    position: absolute;
+    z-index: 10;
+    pointer-events: all;
+
+}
+
+.innactive {
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+}
+ @keyframes move {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(10px, -10px);
+    }
+  }
