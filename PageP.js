@@ -7,16 +7,16 @@ les_categories_names = document.querySelectorAll('.Titres')
 
 les_categories.forEach((listItem, index) => {
     listItem.addEventListener('mouseenter', () => {
-    
+
         les_categories_names[index].classList.remove('innactive');
         les_categories_names[index].classList.add('active');
 les_categories_names[index].addEventListener('click',()=>{
-  
-        })   
+
+        })
     });
 
     listItem.addEventListener('mouseleave', () => {
-      
+
         les_categories_names[index].classList.remove('active');
         les_categories_names[index].classList.add('innactive');
     });
@@ -45,7 +45,7 @@ addPost.addEventListener('click',()=>{
   newPost.classList.add('active')
   addPost.classList.remove('active')
   addPost.classList.add('innactive')
-  
+
 })
 
 var newpostAddB = document.querySelector('.AddButton')
@@ -61,6 +61,7 @@ newpostBackB.addEventListener('click',()=>{
 })
 newpostAddB.addEventListener('click',()=>{
     if(Textarea.value!==''){
+        console.log(Textarea.value)
     newPost.classList.remove('active')
     newPost.classList.add('innactive')
     addPost.classList.remove('innactive')
@@ -68,6 +69,8 @@ newpostAddB.addEventListener('click',()=>{
     Textarea.value=''
 }
 })
+
+
 
 
 //help
