@@ -1,4 +1,10 @@
 <?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+  echo "Vous devez être connecté pour ajouter des commentaires.";
+  exit();
+}
+
 // Connexion à la base de données
 $servername = "localhost";
 $username = "root";
@@ -12,14 +18,19 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $comment = $_POST['comment'];
+  if (isset($_POST['comment'])) {
+    $user_id = $_SESSION['user_id'];
+    $comment = $conn->real_escape_string($_POST['comment']);
 
-  $sql = "INSERT INTO comments (comment) VALUES ('$comment')";
+    $sql = "INSERT INTO comments (user_id, comment) VALUES ('$user_id', '$comment')";
 
-  if ($conn->query($sql) === TRUE) {
-    echo "Comment added successfully";
+    if ($conn->query($sql) === TRUE) {
+      echo "Comment added successfully";
+    } else {
+      echo "Error: " . $conn->error;
+    }
   } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    echo "Le commentaire est vide.";
   }
 }
 
