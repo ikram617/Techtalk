@@ -1,20 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const addPost = document.querySelector('.addPost');
-    const newPost = document.querySelector('.newPost');
+
     const newpostAddB = document.querySelector('.AddButton');
     const newpostBackB = document.querySelector('.BackButton');
     const Textarea = document.querySelector('.newPost textarea');
+  var les_categories = document.querySelectorAll('.CategoriesNames li')
+ var  les_categories_names = document.querySelectorAll('.Titres')
+  var search = document.querySelector('.searchBar input') 
+   var addPost = document.querySelector('.addPost')
+  var newPost = document.querySelector('.newPost')
+  var searchIcon = document.querySelector('.searchBar i')
   // Partie Nom de Categorie
   
     // Afficher/masquer le formulaire d'ajout de commentaire
     addPost.addEventListener('click', () => {
+        console.log('clicked ')
       newPost.classList.remove('innactive');
       newPost.classList.add('active');
       addPost.classList.remove('active');
       addPost.classList.add('innactive');
     });
-  les_categories = document.querySelectorAll('.CategoriesNames li')
-  les_categories_names = document.querySelectorAll('.Titres')
+  
   
     newpostBackB.addEventListener('click', () => {
       newPost.classList.remove('active');
@@ -110,16 +115,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Charger les commentaires au chargement de la page
     loadAllComments();
   // Search bar 
-  var search = document.querySelector('.searchBar input')
+  
   search.addEventListener('keyup',function(e){
       if(e.key==='Enter')
         console.log(this.value)
   })
   
     // Partie Nom de Categorie
-    const les_categories = document.querySelectorAll('.CategoriesNames li');
-    const les_categories_names = document.querySelectorAll('.Titres');
-  var searchIcon = document.querySelector('.searchBar i')
+    
+
   searchIcon.addEventListener('click',()=>{
      console.log(search.value) 
   })
@@ -133,8 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
           // Action lorsque l'on clique sur la catégorie
         });
       });
-  var addPost = document.querySelector('.addPost')
-  var newPost = document.querySelector('.newPost')
+ 
   addPost.addEventListener('click',()=>{
     newPost.classList.remove('innactive')
     newPost.classList.add('active')
@@ -150,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   
     // Barre de recherche
-    const search = document.querySelector('.searchBar input');
+    //const search = document.querySelector('.searchBar input');
     search.addEventListener('keyup', function (e) {
       if (e.key === 'Enter') {
         console.log(this.value);
@@ -172,8 +175,6 @@ document.addEventListener('DOMContentLoaded', () => {
       Textarea.value=''
   }
   })
-  
-    const searchIcon = document.querySelector('.searchBar i');
     searchIcon.addEventListener('click', () => {
       console.log(search.value);
     });
