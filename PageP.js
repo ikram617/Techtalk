@@ -1,3 +1,23 @@
+window.addEventListener('load',(e)=>{
+ 
+    var postBD = document.createElement('div')
+    postBD.classList.add('AffichePost')
+   postBD.innerHTML=`
+    
+    <div class="info">
+      <p class="username">ikram kebir</p>
+      <p class="userField">Artificial Intelligence</p>
+    </div>
+    <hr style="height: 1px; border: none; background-color: black; width: 100%;">
+    <div class="comment">
+      <p>${Textarea.value}</p>
+    </div>
+
+   `
+
+})
+
+
 document.addEventListener('DOMContentLoaded', () => {
 
     const newpostAddB = document.querySelector('.AddButton');
@@ -33,7 +53,23 @@ document.addEventListener('DOMContentLoaded', () => {
       if (Textarea.value !== '') {
         const comment = Textarea.value;
         console.log(comment); // Afficher le commentaire dans la console
-  
+        // ajouter le commentaire au deb du page 
+       var post = document.createElement('div')
+        post.classList.add('AffichePost')
+       post.innerHTML=`
+        
+        <div class="info">
+          <p class="username">ikram kebir</p>
+          <p class="userField">Artificial Intelligence</p>
+        </div>
+        <hr style="height: 1px; border: none; background-color: black; width: 100%;">
+        <div class="comment">
+          <p>${Textarea.value}</p>
+        </div>
+
+       `
+       const postsContainer = document.querySelector('.posts');
+       postsContainer.insertBefore(post, postsContainer.firstChild);
         // Envoie AJAX pour ajouter le commentaire dans la base de données
         const xhr = new XMLHttpRequest();
         xhr.open('POST', 'add_comment.php', true);
@@ -179,12 +215,9 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log(search.value);
     });
   
-    // Redirection vers la page d'aide
-    document.querySelector('.help').addEventListener('click', () => {
-      window.location.href = './help.html';
-    });
   });
   //help
   document.querySelector('.help').addEventListener('click',()=>{
       window.location.href='./help.html'
   })
+

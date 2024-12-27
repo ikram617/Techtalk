@@ -279,20 +279,24 @@ textarea{
 
 .posts{
    
-    height: 100%;
-    width: 100% ; 
+    width: 100%;
+    height: calc(100% - 17vh); /* Subtract the combined height of .menu (10vh) and .searchDiv (5vh) */
+    margin-top: 15vh; /* Push .posts below the fixed elements */
     display: flex;
-    margin-top: 20vh;   
-    justify-content: center;
     flex-direction: column;
-    gap:2%
-
+    justify-content: flex-start;
+    gap: 2%;
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 5%; /* Adjust padding for inner spacing */
+    box-sizing: border-box;
+}
+.posts::-webkit-scrollbar {
+    display: none; 
 }
 
 .posts {
-    overflow-y: auto; /* Enables vertical scrolling */
-    flex: 1; /* Takes up the remaining space */
-    padding: 2%;
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
 }
 .AffichePost{
    
