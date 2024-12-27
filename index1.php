@@ -6,10 +6,10 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 // Connexion à la base de données
-$servername = "root";
-$username = "root";
-$password = "";
-$dbname = "root";
+$servername = "localhost"; 
+$username = "root"; 
+$password = ""; 
+$dbname = "root"; 
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -30,5 +30,4 @@ if ($result->num_rows > 0) {
 
 $conn->close();
 
-echo json_encode(['username' => $username]);
 ?>

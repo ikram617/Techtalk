@@ -129,7 +129,7 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    window.location.href = 'PageP.php';
+                    window.location.href = 'PageP.html';
                 } else {
                     document.getElementById('error-message').innerHTML = '<div class="error-message">' + data.message + '</div>';
                 }
