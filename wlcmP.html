@@ -65,7 +65,7 @@
                 <!-- Sign-In Form -->
                 <div id="sign-in-form" class="form active">
                     <form action="wlcmP.php" method="POST">
-                        <div id="sign-in-error-message" class="form-group"></div> <!-- Ajout ici -->
+                        <div id="sign-in-error-message" class="form-group"></div> 
                         <div class="form-group inputFullname">
                             <input type="text" name="fullname" placeholder="Full Name" required>
                         </div>
@@ -129,7 +129,7 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    window.location.href = 'PageP.html';
+                    window.location.href = 'PageP.php';
                 } else {
                     document.getElementById('error-message').innerHTML = '<div class="error-message">' + data.message + '</div>';
                 }
