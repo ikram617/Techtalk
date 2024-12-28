@@ -98,20 +98,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (xhr.status === 200) {
           const response = JSON.parse(xhr.responseText);
           if (response.success) {
-            var post = document.createElement('div');
-            post.classList.add('AffichePost');
-            post.innerHTML = `
-              <div class="info">
-                <p class="username">${username}</p>
-                <p class="userField">${response.userField}</p>
-              </div>
-              <hr style="height: 1px; border: none; background-color: black; width: 100%;">
-              <div class="comment">
-                <p>${Textarea.value}</p>
-              </div>
-            `;
-            const postsContainer = document.querySelector('.posts');
-            postsContainer.insertBefore(post, postsContainer.firstChild);
+            // Recharger les commentaires après ajout
+            loadAllComments();
+
             // Réinitialiser le champ de texte et fermer le formulaire
             Textarea.value = '';
             newPost.classList.remove('active');
