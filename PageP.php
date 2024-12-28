@@ -1,4 +1,37 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+  header("Location: login.php");
+  exit();
+}
 
+// Connexion à la base de données
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "root"; 
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+$user_id = $_SESSION['user_id'];
+$sql = "SELECT username, field FROM users WHERE id = '$user_id'";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+  $row = $result->fetch_assoc();
+  $username = $row['username'];
+  $field = $row['field'];
+} else {
+  $username = "Guest";
+  $field = "Unknown";
+}
+
+$conn->close();
+?>
 <!DOCTYPE html>
 <html>
 <head>
