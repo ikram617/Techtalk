@@ -7,6 +7,10 @@
   <link href="./PageP.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Orbit&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script>
+    const username = "<?php echo $username; ?>";
+    const userField = "<?php echo $field; ?>";
+  </script>
 </head>
 <body>
   <div class="menu">
@@ -36,38 +40,41 @@
         <span>Categories</span>
       </div>
       <div class="CategoriesNames">
-        <ul>
-          <li>
-            <img class="AiPhoto" src="./resource/Aitheone.png" alt="">
-            <div class="Titres innactive">
-              <p>Artificial Intelligence</p>
-            </div>
-          </li>
-          <li>
-            <img class="dataSPhoto" src="./resource/datasc.png" alt="">
-            <div class="Titres innactive">
-              <p>Data Science</p>
-            </div>
-          </li>
-          <li>
-            <img class="CyberPhoto" src="./resource/cybersecurity.webp" alt="">
-            <div class="Titres innactive">
-              <p>Cyber Security</p>
-            </div>
-          </li>
-          <li>
-            <img class="FullSPhoto" src="./resource/fullStack.webp" alt="">
-            <div class="Titres innactive">
-              <p>Full Stack</p>
-            </div>
-          </li>
-          <li>
-            <img class="CloudPhoto" src="./resource/cloud.webp" alt="">
-            <div class="Titres innactive">
-              <p>Cloud Computing</p>
-            </div>
-          </li>
-        </ul>
+      <div class="CategoriesNames">
+  <ul>
+    <li data-category-id="1">
+      <img class="AiPhoto" src="./resource/Aitheone.png" alt="">
+      <div class="Titres innactive">
+        <p>Artificial Intelligence</p>
+      </div>
+    </li>
+    <li data-category-id="2">
+      <img class="dataSPhoto" src="./resource/datasc.png" alt="">
+      <div class="Titres innactive">
+        <p>Data Science</p>
+      </div>
+    </li>
+    <li data-category-id="3">
+      <img class="CyberPhoto" src="./resource/cybersecurity.webp" alt="">
+      <div class="Titres innactive">
+        <p>Cyber Security</p>
+      </div>
+    </li>
+    <li data-category-id="4">
+      <img class="FullSPhoto" src="./resource/fullStack.webp" alt="">
+      <div class="Titres innactive">
+        <p>Full Stack</p>
+      </div>
+    </li>
+    <li data-category-id="5">
+      <img class="CloudPhoto" src="./resource/cloud.webp" alt="">
+      <div class="Titres innactive">
+        <p>Cloud Computing</p>
+      </div>
+    </li>
+  </ul>
+</div>
+
       </div>
       <div class="help">
         <button>Help</button>
@@ -84,10 +91,8 @@
         <div class="comment">
           <p>Pour réussir, le chercheur opérationnel doit faire preuve de grandes habilités analytiques, d'un esprit ouvert et d'un intérêt marqué pour la résolution de problèmes pratiques.</p>
         </div>
-      </div>  
-      <div class="likes">
-        
-      </div> 
+      </div>
+      <!-- Répétez pour chaque commentaire -->
     </div>   
 
     <div class="addPost">

@@ -11,7 +11,8 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT comments.comment, users.username FROM comments JOIN users ON comments.user_id = users.id";
+// Récupérer les commentaires
+$sql = "SELECT users.username, users.field, comments.comment FROM comments JOIN users ON comments.user_id = users.id ORDER BY comments.created_at DESC";
 $result = $conn->query($sql);
 
 $comments = [];
@@ -21,7 +22,6 @@ if ($result->num_rows > 0) {
   }
 }
 
-echo json_encode($comments);
-
 $conn->close();
+echo json_encode($comments);
 ?>
