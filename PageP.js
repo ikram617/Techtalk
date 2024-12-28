@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
   const newpostAddB = document.querySelector('.AddButton');
   const newpostBackB = document.querySelector('.BackButton');
@@ -25,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
           post.innerHTML = `
             <div class="info">
               <p class="username">${comment.username}</p>
-              <p class="userField">${comment.field}</p>
+              <p class="userField">${comment.userField}</p>
             </div>
             <hr style="height: 1px; border: none; background-color: black; width: 100%;">
             <div class="comment">
@@ -38,10 +37,43 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     xhr.send();
   }
-  
+
+  // Fonction pour charger les commentaires par catégorie
+  function loadCommentsByCategory(categoryId) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', `get_comments_by_category.php?category_id=${categoryId}`, true);
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        try {
+          const comments = JSON.parse(xhr.responseText);
+          const postsContainer = document.querySelector('.posts');
+          postsContainer.innerHTML = ''; // Clear current comments
+          comments.forEach(comment => {
+            const post = document.createElement('div');
+            post.classList.add('AffichePost');
+            post.innerHTML = `
+              <div class="info">
+                <p class="username">${comment.username}</p>
+                <p class="userField">${comment.userField}</p>
+              </div>
+              <hr style="height: 1px; border: none; background-color: black; width: 100%;">
+              <div class="comment">
+                <p>${comment.comment}</p>
+              </div>
+            `;
+            postsContainer.appendChild(post);
+          });
+        } catch (e) {
+          console.error('Erreur lors de l\'analyse du JSON:', e);
+          console.error('Réponse JSON:', xhr.responseText);
+        }
+      }
+    };
+    xhr.send();
+  }
+
   // Afficher/masquer le formulaire d'ajout de commentaire
   addPost.addEventListener('click', () => {
-    console.log('clicked ');
     newPost.classList.remove('innactive');
     newPost.classList.add('active');
     addPost.classList.remove('active');
@@ -59,8 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
   newpostAddB.addEventListener('click', () => {
     if (Textarea.value !== '') {
       const comment = Textarea.value;
-      console.log(comment); // Afficher le commentaire dans la console
-      // ajouter le commentaire au début de la page 
       var post = document.createElement('div');
       post.classList.add('AffichePost');
       post.innerHTML = `
@@ -98,23 +128,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   loadAllComments(); // Charger les commentaires au chargement de la page
 
-// Search bar
-  search.addEventListener('keyup', function(e) {
-    if(e.key === 'Enter') {
-      console.log(this.value);
-    }
-  });
-
-  searchIcon.addEventListener('click', () => {
-    console.log(search.value);
-  });
-
+  // Ajouter des écouteurs d'événement pour chaque catégorie
   les_categories.forEach((listItem, index) => {
     listItem.addEventListener('mouseenter', () => {
       les_categories_names[index].classList.remove('innactive');
       les_categories_names[index].classList.add('active');
-      les_categories_names[index].addEventListener('click', () => {
-        // Action lorsque l'on clique sur la catégorie
+      listItem.addEventListener('click', () => {
+        const categoryId = listItem.getAttribute('data-category-id');
+        loadCommentsByCategory(categoryId);
       });
     });
 
