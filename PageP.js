@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   var addPost = document.querySelector('.addPost');
   var newPost = document.querySelector('.newPost');
   var searchIcon = document.querySelector('.searchBar i');
-  
+
   // Fonction pour charger les commentaires
   function loadAllComments() {
     const xhr = new XMLHttpRequest();
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
           post.innerHTML = `
             <div class="info">
               <p class="username">${comment.username}</p>
-              <p class="userField">${comment.userField}</p>
+              <p class="userField">${comment.field}</p>
             </div>
             <hr style="height: 1px; border: none; background-color: black; width: 100%;">
             <div class="comment">
@@ -91,38 +91,39 @@ document.addEventListener('DOMContentLoaded', () => {
   newpostAddB.addEventListener('click', () => {
     if (Textarea.value !== '') {
       const comment = Textarea.value;
-      var post = document.createElement('div');
-      post.classList.add('AffichePost');
-      post.innerHTML = `
-        <div class="info">
-          <p class="username">${username}</p>
-          <p class="userField">${userField}</p>
-        </div>
-        <hr style="height: 1px; border: none; background-color: black; width: 100%;">
-        <div class="comment">
-          <p>${Textarea.value}</p>
-        </div>
-      `;
-      const postsContainer = document.querySelector('.posts');
-      postsContainer.insertBefore(post, postsContainer.firstChild);
-      // Envoie AJAX pour ajouter le commentaire dans la base de données
       const xhr = new XMLHttpRequest();
       xhr.open('POST', 'add_comment.php', true);
       xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-      xhr.send(`comment=${encodeURIComponent(comment)}&username=${encodeURIComponent(username)}&userField=${encodeURIComponent(userField)}`);
       xhr.onload = function () {
         if (xhr.status === 200) {
-          loadAllComments(); // Recharger les commentaires après ajout
-          // Réinitialiser le champ de texte et fermer le formulaire
-          Textarea.value = '';
-          newPost.classList.remove('active');
-          newPost.classList.add('innactive');
-          addPost.classList.remove('innactive');
-          addPost.classList.add('active');
-        } else {
-          alert('Erreur lors de l\'ajout du commentaire');
+          const response = JSON.parse(xhr.responseText);
+          if (response.success) {
+            var post = document.createElement('div');
+            post.classList.add('AffichePost');
+            post.innerHTML = `
+              <div class="info">
+                <p class="username">${username}</p>
+                <p class="userField">${response.userField}</p>
+              </div>
+              <hr style="height: 1px; border: none; background-color: black; width: 100%;">
+              <div class="comment">
+                <p>${Textarea.value}</p>
+              </div>
+            `;
+            const postsContainer = document.querySelector('.posts');
+            postsContainer.insertBefore(post, postsContainer.firstChild);
+            // Réinitialiser le champ de texte et fermer le formulaire
+            Textarea.value = '';
+            newPost.classList.remove('active');
+            newPost.classList.add('innactive');
+            addPost.classList.remove('innactive');
+            addPost.classList.add('active');
+          } else {
+            alert('Erreur lors de l\'ajout du commentaire');
+          }
         }
       };
+      xhr.send(`comment=${encodeURIComponent(comment)}`);
     }
   });
 
