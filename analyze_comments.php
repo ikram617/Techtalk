@@ -23,8 +23,11 @@ if ($result_comments->num_rows > 0) {
     // Analyser les mots-clés dans le commentaire
     $comment_words = explode(' ', $comment_text);
     foreach ($comment_words as $word) {
+      // Échapper les caractères spéciaux dans le mot
+      $word_escaped = $conn->real_escape_string($word);
+
       // Vérifier si le mot existe dans la table keywords
-      $sql_check_keyword = "SELECT keyword FROM keywords WHERE keyword = '$word'";
+      $sql_check_keyword = "SELECT keyword FROM keywords WHERE keyword = '$word_escaped'";
       $result_keyword = $conn->query($sql_check_keyword);
       if ($result_keyword->num_rows > 0) {
         while ($keyword_row = $result_keyword->fetch_assoc()) {
