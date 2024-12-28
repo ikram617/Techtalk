@@ -115,18 +115,26 @@ $conn->close();
     </div>
 
     <div class="posts">
-      <div class="AffichePost">
-        <div class="info">
-          <p class="username">ikram kebir</p>
-          <p class="userField">Artificial Intelligence</p>
-        </div>
-        <hr style="height: 1px; border: none; background-color: black; width: 100%;">
-        <div class="comment">
-          <p>Pour réussir, le chercheur opérationnel doit faire preuve de grandes habilités analytiques, d'un esprit ouvert et d'un intérêt marqué pour la résolution de problèmes pratiques.</p>
-        </div>
-      </div>
-      <!-- Répétez pour chaque commentaire -->
-    </div>   
+    <div class="postLike">
+  <div class="AffichePost">
+    <div class="info">
+      <p class="username">ikram kebir</p>
+      <p class="userField">Artificial Intelligence</p>
+    </div>
+    <hr style="height: 1px; border: none; background-color: black; width: 100%;">
+    <div class="comment">
+      <p>
+        Pour réussir, le chercheur opérationnel doit faire preuve de grandes habilités analytiques, d'un esprit ouvert et d'un intérêt marqué pour la résolution de problèmes pratiques.
+      </p>
+    </div>
+    
+  </div>
+  <div class="likes">
+      <i class="fa-regular fa-thumbs-up"></i>
+      <i class="fa-regular fa-thumbs-down"></i>
+    </div>
+  </div>
+  </div>
 
     <div class="addPost">
       <i class="fa-regular fa-comment-dots"></i>

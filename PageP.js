@@ -9,8 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
   var newPost = document.querySelector('.newPost');
   var searchIcon = document.querySelector('.searchBar i');
 
+
   // Fonction pour charger les commentaires
-  function loadAllComments() {
+ /* function loadAllComments() {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', 'get_comments.php', true);
     xhr.onload = function () {
@@ -32,11 +33,13 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
           `;
           postsContainer.appendChild(post);
+
         });
+        comments.classList.add('comment')
       }
     };
     xhr.send();
-  }
+  }   */
 
   // Fonction pour charger les commentaires par catégorie
   function loadCommentsByCategory(categoryId) {
@@ -157,3 +160,25 @@ document.addEventListener('DOMContentLoaded', () => {
 document.querySelector('.help').addEventListener('click', () => {
   window.location.href = './help.html';
 });
+
+
+
+var like = document.querySelector('.fa-thumbs-up')
+var dislike = document.querySelector('.fa-thumbs-down')
+
+like.addEventListener('click',()=>{
+  if(like.style.color='#000'){
+    like.style.color='#888'
+  }
+  else{
+    like.style.color='#000'
+  }
+})
+dislike.addEventListener('click',()=>{
+  if(dislike.style.color='#000'){
+    dislike.style.color='#888'
+  }
+  else{
+    dislike.style.color='#000'
+  }
+})
