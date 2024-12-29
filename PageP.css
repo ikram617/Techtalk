@@ -280,21 +280,21 @@ textarea{
 
 .comment {
     padding: 10px;
-    word-wrap: break-word; /* Ensure long words break */
-    white-space: pre-wrap; /* Preserve whitespace and line breaks */
+    word-wrap: break-word; 
+    white-space: pre-wrap; 
 }
 
 .posts{
    
     width: 100%;
-    min-height: calc(100% - 17vh); /* Subtract the combined height of .menu (10vh) and .searchDiv (5vh) */
-    margin-top: 15vh; /* Push .posts below the fixed elements */
+    min-height: calc(100% - 17vh);
+    margin-top: 15vh; 
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     gap: 2%;
-    overflow-y: auto; /* Enable vertical scrolling */
-    padding: 5%; /* Adjust padding for inner spacing */
+    overflow-y: auto; 
+    padding: 5%; 
     box-sizing: border-box;
 }
 .posts::-webkit-scrollbar {
@@ -305,18 +305,7 @@ textarea{
     scrollbar-width: none; 
     -ms-overflow-style: none; 
 }
-/*.AffichePost{
-   
-    display: flex;
-    align-self: center;
-    height: auto ;
-    min-height: 20vh;
-    width: 40vw;
-    background-color: #F5F5F5;
-    flex-direction: column;
-    box-shadow: 5px 5px 15px rgb(163, 158, 158);
-}
-*/
+
 .info{
     width: 40vw;
     height: 5vh;
@@ -334,15 +323,6 @@ textarea{
     margin : 3% ; 
 }
 
-
-/*.likes{
-    position: absolute;
-    right: 15%;
-    font-size: 25px;
-    display: flex;
-    flex-direction: column;
-    gap: 2%;
-} */
 .likes i {
     font-size: 25px;
     cursor: pointer;
@@ -375,9 +355,9 @@ textarea{
   .postLike {
     display: flex;
     justify-content: center;
-    position: relative; /* Important for positioning likes relative to each post */
-    width: 100%; /* Matches parent width for alignment */
-    margin-bottom: 20px; /* Add spacing between posts */
+    position: relative; 
+    width: 100%; 
+    margin-bottom: 20px; 
 }
 
 .AffichePost {
@@ -389,14 +369,14 @@ textarea{
     background-color: #F5F5F5;
     flex-direction: column;
     box-shadow: 5px 5px 15px rgb(163, 158, 158);
-    position: relative; /* Necessary for child elements to position inside this container */
+    position: relative; 
 }
 
 .likes {
-    position: absolute; /* Position relative to the .AffichePost */
-    top: 50%; /* Middle alignment */
-    transform: translateY(-50%); /* Adjust to ensure middle alignment */
-    right: 10%; /* Moves the likes section to the right of the post */
+    position: absolute; 
+    top: 50%; 
+    transform: translateY(-50%); 
+    right: 10%; 
     display: flex;
     flex-direction: column;
     gap: 10px;

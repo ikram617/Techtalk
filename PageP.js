@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // Fonction pour charger les commentaires
- /* function loadAllComments() {
+ function loadAllComments() {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', 'get_comments.php', true);
     xhr.onload = function () {
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const comments = JSON.parse(xhr.responseText);
         const postsContainer = document.querySelector('.posts');
         postsContainer.innerHTML = ''; // Clear current comments
-        comments.forEach(comment => {
+      /*   comments.forEach(comment => {
           const post = document.createElement('div');
           post.classList.add('AffichePost');
           post.innerHTML = `
@@ -34,12 +34,47 @@ document.addEventListener('DOMContentLoaded', () => {
           `;
           postsContainer.appendChild(post);
 
-        });
-        comments.classList.add('comment')
+        });*/
+        comments.forEach(comment => {
+          // Create the container for the post and likes
+          const postLike = document.createElement('div');
+          postLike.classList.add('postLike');
+      
+          // Create the AffichePost div
+          const post = document.createElement('div');
+          post.classList.add('AffichePost');
+          post.innerHTML = `
+            <div class="info">
+              <p class="username">${comment.username}</p>
+              <p class="userField">${comment.field}</p>
+            </div>
+            <hr style="height: 1px; border: none; background-color: black; width: 100%;">
+            <div class="comment">
+              <p>${comment.comment}</p>
+            </div>
+          `;
+      
+          // Create the likes div
+          const likes = document.createElement('div');
+          likes.classList.add('likes');
+          likes.innerHTML = `
+            <i class="fa-regular fa-thumbs-up"></i>
+            <i class="fa-regular fa-thumbs-down"></i>
+          `;
+      
+          // Append the post and likes to the postLike container
+          postLike.appendChild(post);
+          postLike.appendChild(likes);
+      
+          // Append the postLike container to the postsContainer
+          postsContainer.appendChild(postLike); 
+      });
+      
+       
       }
     };
     xhr.send();
-  }   */
+  }   
 
   // Fonction pour charger les commentaires par catégorie
   function loadCommentsByCategory(categoryId) {
@@ -186,7 +221,7 @@ dislike.addEventListener('click',()=>{
 
 
 //log out button 
-var logout = document.querySelector('logout button')
-logout.addEventListener('click',()=>{
+var logoutB = document.querySelector('.logout button')
+logoutB.addEventListener('click',()=>{
   window.location.href='./wlcmP.html'
 })
