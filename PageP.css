@@ -326,9 +326,12 @@ textarea{
 .likes i {
     font-size: 25px;
     cursor: pointer;
-    color: #888;
+ 
   }
-  
+  .fa-thumbs-up ,
+  .fa-thumbs-down{
+    color :rgb(136, 136, 136);
+  }
 
 
 .active {

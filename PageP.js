@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   var addPost = document.querySelector('.addPost');
   var newPost = document.querySelector('.newPost');
   var searchIcon = document.querySelector('.searchBar i');
-  var like = document.querySelector('.fa-thumbs-up')
+  var like = document.querySelector('.likes i')
   var dislike = document.querySelector('.fa-thumbs-down')
   // Fonction pour charger les commentaires
   function loadAllComments() {
@@ -260,19 +260,24 @@ document.addEventListener('DOMContentLoaded', () => {
     window.location.href = './help.html';
   });
 
+
+  // search bar 
+  search.addEventListener('click',function(e){
+    if(e.key==='Enter')
+      console.log(this.value)
+    searchbarFunction()
+})
+
+var searchIcon = document.querySelector('.searchBar i')
+searchIcon.addEventListener('click',()=>{
+   console.log(search.value) 
+   searchbarFunction()
+})
+
   // Ajouter la gestion des likes et dislikes
   document.addEventListener('click', (event) => {
     
     if (event.target.classList.contains('fa-thumbs-up')) {
-        if(like.style.color='#000'){
-          like.style.color='#888'
-          console.log('clic')
-        }
-        else{
-          like.style.color='#000'
-          console.log('clic')
-        }
-      
       const postLikeContainer = event.target.closest('.postLike');
       const commentId = postLikeContainer.querySelector('.comment_id').textContent;
       handleLikeDislike(commentId, 'like', postLikeContainer.querySelector('.likes'), event.target);
@@ -282,10 +287,45 @@ document.addEventListener('DOMContentLoaded', () => {
       handleLikeDislike(commentId, 'dislike', postLikeContainer.querySelector('.likes'), event.target);
     }
   });
-
+  //change color like and dislike 
+  document.querySelector('.posts').addEventListener('click', (event) => {
+    if (event.target.classList.contains('fa-thumbs-up') || event.target.classList.contains('fa-thumbs-down')) {
+      console.log('Icon clicked');
+      const currentColor = event.target.style.color || window.getComputedStyle(event.target).color;
+      console.log('Current color:', currentColor);
+  
+      if (currentColor === 'rgb(136, 136, 136)' || currentColor === '') {
+        event.target.style.color = 'rgb(0, 0, 0)';
+      } else {
+        event.target.style.color = 'rgb(136, 136, 136)';
+      }
+    }
+  });
+  
+  
   // Gestion du bouton de déconnexion
   var logoutB = document.querySelector('.logout button');
   logoutB.addEventListener('click', () => {
     window.location.href = './wlcmP.html';
   });
 });
+
+
+
+
+function searchbarFunction() {
+  const searchphrase = document.querySelector('.searchBar input').value.trim().toLowerCase();
+  const postsContainer = document.querySelector('.posts');
+  const posts = Array.from(document.querySelectorAll('.postLike')); 
+
+  const matchingPosts = posts.filter(post => {
+    const commentText = post.querySelector('.comment p').textContent.trim().toLowerCase();
+    return commentText.includes(searchphrase); 
+  });
+
+  const nonMatchingPosts = posts.filter(post => !matchingPosts.includes(post));
+  postsContainer.innerHTML = ''; 
+  matchingPosts.forEach(post => postsContainer.appendChild(post)); 
+  nonMatchingPosts.forEach(post => postsContainer.appendChild(post)); 
+}
+
