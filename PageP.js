@@ -161,7 +161,7 @@ document.querySelector('.help').addEventListener('click', () => {
   window.location.href = './help.html';
 });
 
-
+// add the like & dislike 
 
 var like = document.querySelector('.fa-thumbs-up')
 var dislike = document.querySelector('.fa-thumbs-down')
@@ -181,4 +181,12 @@ dislike.addEventListener('click',()=>{
   else{
     dislike.style.color='#000'
   }
+})
+
+
+
+//log out button 
+var logout = document.querySelector('logout button')
+logout.addEventListener('click',()=>{
+  window.location.href='./wlcmP.html'
 })

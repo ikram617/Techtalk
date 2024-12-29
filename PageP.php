@@ -130,7 +130,7 @@ $conn->close();
     
   </div>
   <div class="likes">
-      <i class="fa-regular fa-thumbs-up"></i>
+      <i class=" fa-regular fa-thumbs-up"></i>
       <i class="fa-regular fa-thumbs-down"></i>
     </div>
   </div>
