@@ -202,15 +202,18 @@ var like = document.querySelector('.fa-thumbs-up')
 var dislike = document.querySelector('.fa-thumbs-down')
 
 like.addEventListener('click',()=>{
-  if(like.style.color='#000'){
+  if(like.style.color==='#000'){
     like.style.color='#888'
+    console.log('clic')
   }
   else{
     like.style.color='#000'
+    console.log('clic')
+
   }
 })
 dislike.addEventListener('click',()=>{
-  if(dislike.style.color='#000'){
+  if(dislike.style.color==='#000'){
     dislike.style.color='#888'
   }
   else{
