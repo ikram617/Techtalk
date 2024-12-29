@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
   var addPost = document.querySelector('.addPost');
   var newPost = document.querySelector('.newPost');
   var searchIcon = document.querySelector('.searchBar i');
-
+  var like = document.querySelector('.fa-thumbs-up')
+  var dislike = document.querySelector('.fa-thumbs-down')
   // Fonction pour charger les commentaires
   function loadAllComments() {
     const xhr = new XMLHttpRequest();
@@ -92,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
               </div>
             `;
 
-            const likes = document.createElement('div');
+            var likes = document.createElement('div');
             likes.classList.add('likes');
             likes.innerHTML = `
               <i class="fa-regular fa-thumbs-up" data-liked="false"></i><span class="like-count">${comment.likes}</span>
@@ -223,6 +224,8 @@ document.addEventListener('DOMContentLoaded', () => {
       les_categories_names[index].classList.remove('innactive');
       les_categories_names[index].classList.add('active');
       listItem.addEventListener('click', () => {
+        listItem.classList.remove('innactive');
+        listItem.classList.add('active');
         const categoryId = listItem.getAttribute('data-category-id');
         console.log(`Category ID clicked: ${categoryId}`);
         loadCommentsByCategory(categoryId);
@@ -259,7 +262,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Ajouter la gestion des likes et dislikes
   document.addEventListener('click', (event) => {
+    
     if (event.target.classList.contains('fa-thumbs-up')) {
+        if(like.style.color='#000'){
+          like.style.color='#888'
+          console.log('clic')
+        }
+        else{
+          like.style.color='#000'
+          console.log('clic')
+        }
+      
       const postLikeContainer = event.target.closest('.postLike');
       const commentId = postLikeContainer.querySelector('.comment_id').textContent;
       handleLikeDislike(commentId, 'like', postLikeContainer.querySelector('.likes'), event.target);

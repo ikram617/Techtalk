@@ -126,7 +126,7 @@
     position: fixed;
     margin-top: 15vh;
     flex-wrap: wrap;
-
+    z-index: 10;
     
 }
 
@@ -358,6 +358,7 @@ textarea{
     position: relative; 
     width: 100%; 
     margin-bottom: 20px; 
+    z-index: 5;
 }
 
 .AffichePost {
