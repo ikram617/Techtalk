@@ -289,16 +289,16 @@ searchIcon.addEventListener('click',()=>{
   });
   //change color like and dislike 
   document.querySelector('.posts').addEventListener('click', (event) => {
-    if (event.target.classList.contains('fa-thumbs-up') || event.target.classList.contains('fa-thumbs-down')) {
-      console.log('Icon clicked');
-      const currentColor = event.target.style.color || window.getComputedStyle(event.target).color;
+    if (event.target.classList.contains('fa-thumbs-up')) {
+      console.log('Thumbs up clicked');
+      const currentColor = window.getComputedStyle(event.target).color;
       console.log('Current color:', currentColor);
-  
-      if (currentColor === 'rgb(136, 136, 136)' || currentColor === '') {
-        event.target.style.color = 'rgb(0, 0, 0)';
-      } else {
-        event.target.style.color = 'rgb(136, 136, 136)';
-      }
+      event.target.style.color = currentColor === 'rgb(136, 136, 136)' ? 'rgb(0, 0, 0)' : 'rgb(136, 136, 136)';
+    } else if (event.target.classList.contains('fa-thumbs-down')) {
+      console.log('Thumbs down clicked');
+      const currentColor = window.getComputedStyle(event.target).color;
+      console.log('Current color:', currentColor);
+      event.target.style.color = currentColor === 'rgb(136, 136, 136)' ? 'rgb(0, 0, 0)' : 'rgb(136, 136, 136)';
     }
   });
   
