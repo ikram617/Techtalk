@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
           post.innerHTML = `
             <div class="info">
               <p class="username">${comment.username}</p>
-              <p class="userField">${comment.field}</p>
+              <p class="userField">${comment.userField}</p>
               <p class="comment_id" style="display:none">${comment.comment_id}</p>
             </div>
             <hr style="height: 1px; border: none; background-color: black; width: 100%;">
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
           comments.forEach(comment => {
             const postLike = document.createElement('div');
             postLike.classList.add('postLike');
-
+  
             const post = document.createElement('div');
             post.classList.add('AffichePost');
             post.innerHTML = `
@@ -92,22 +92,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p>${comment.comment}</p>
               </div>
             `;
-
-            var likes = document.createElement('div');
+  
+            const likes = document.createElement('div');
             likes.classList.add('likes');
             likes.innerHTML = `
               <i class="fa-regular fa-thumbs-up" data-liked="false"></i><span class="like-count">${comment.likes}</span>
               <i class="fa-regular fa-thumbs-down" data-liked="false"></i><span class="dislike-count">${comment.dislikes}</span>
             `;
-
+  
             likes.querySelector('.fa-thumbs-up').addEventListener('click', (event) => {
               handleLikeDislike(comment.comment_id, 'like', likes, event.target);
             });
-
+  
             likes.querySelector('.fa-thumbs-down').addEventListener('click', (event) => {
               handleLikeDislike(comment.comment_id, 'dislike', likes, event.target);
             });
-
+  
             postLike.appendChild(post);
             postLike.appendChild(likes);
             postsContainer.appendChild(postLike);
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     xhr.send();
   }
-
+  
   // Fonction pour gérer les likes et dislikes
   function handleLikeDislike(commentId, type, likesContainer, target) {
     console.log(`Sending data: comment_id=${commentId}, type=${type}`);
@@ -218,25 +218,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
   loadAllComments(); // Charger les commentaires au chargement de la page
 
-  // Ajouter des écouteurs d'événement pour chaque catégorie
-  les_categories.forEach((listItem, index) => {
-    listItem.addEventListener('mouseenter', () => {
-      les_categories_names[index].classList.remove('innactive');
-      les_categories_names[index].classList.add('active');
-      listItem.addEventListener('click', () => {
-        listItem.classList.remove('innactive');
-        listItem.classList.add('active');
-        const categoryId = listItem.getAttribute('data-category-id');
-        console.log(`Category ID clicked: ${categoryId}`);
-        loadCommentsByCategory(categoryId);
-      });
+ // Ajouter des écouteurs d'événement pour chaque catégorie
+les_categories.forEach((listItem, index) => {
+  listItem.addEventListener('mouseenter', () => {
+    les_categories_names[index].classList.remove('innactive');
+    les_categories_names[index].classList.add('active');
+  });
+
+  listItem.addEventListener('mouseleave', () => {
+    // Ne rien faire ici pour garder le nom visible après la sélection
+  });
+
+  listItem.addEventListener('click', () => {
+    // Désactiver toutes les catégories
+    les_categories.forEach((item, idx) => {
+      les_categories_names[idx].classList.remove('active');
+      item.classList.remove('active');
     });
 
-    listItem.addEventListener('mouseleave', () => {
-      les_categories_names[index].classList.remove('active');
-      les_categories_names[index].classList.add('innactive');
-    });
+    // Activer la catégorie cliquée
+    listItem.classList.add('active');
+    les_categories_names[index].classList.add('active');
+    
+    const categoryId = listItem.getAttribute('data-category-id');
+    const categoryText = listItem.querySelector('.Titres p').textContent.trim();
+    
+    console.log(`Category ID clicked: ${categoryId}`);
+    
+    // Charger les commentaires de la catégorie sélectionnée
+    loadCommentsByCategory(categoryId);
   });
+});
+
+
 
   newpostBackB.addEventListener('click', () => {
     newPost.classList.remove('active');
@@ -289,16 +303,16 @@ searchIcon.addEventListener('click',()=>{
   });
   //change color like and dislike 
   document.querySelector('.posts').addEventListener('click', (event) => {
-    if (event.target.classList.contains('fa-thumbs-up') || event.target.classList.contains('fa-thumbs-down')) {
-      console.log('Icon clicked');
-      const currentColor = event.target.style.color || window.getComputedStyle(event.target).color;
+    if (event.target.classList.contains('fa-thumbs-up')) {
+      console.log('Thumbs up clicked');
+      const currentColor = window.getComputedStyle(event.target).color;
       console.log('Current color:', currentColor);
-  
-      if (currentColor === 'rgb(136, 136, 136)' || currentColor === '') {
-        event.target.style.color = 'rgb(0, 0, 0)';
-      } else {
-        event.target.style.color = 'rgb(136, 136, 136)';
-      }
+      event.target.style.color = currentColor === 'rgb(136, 136, 136)' ? 'rgb(0, 0, 0)' : 'rgb(136, 136, 136)';
+    } else if (event.target.classList.contains('fa-thumbs-down')) {
+      console.log('Thumbs down clicked');
+      const currentColor = window.getComputedStyle(event.target).color;
+      console.log('Current color:', currentColor);
+      event.target.style.color = currentColor === 'rgb(136, 136, 136)' ? 'rgb(0, 0, 0)' : 'rgb(136, 136, 136)';
     }
   });
   
