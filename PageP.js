@@ -226,7 +226,8 @@ les_categories.forEach((listItem, index) => {
   });
 
   listItem.addEventListener('mouseleave', () => {
-    // Ne rien faire ici pour garder le nom visible après la sélection
+    les_categories_names[index].classList.remove('active');
+    les_categories_names[index].classList.add('innactive');
   });
 
   listItem.addEventListener('click', () => {
