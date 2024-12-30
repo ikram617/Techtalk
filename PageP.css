@@ -222,6 +222,7 @@
      border-radius: 50%;
      cursor: pointer;
      animation: move 1s infinite alternate;
+     z-index: 10;
 
  }
 
