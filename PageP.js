@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
   loadAllComments(); // Charger les commentaires au chargement de la page
 
  // Ajouter des écouteurs d'événement pour chaque catégorie
-les_categories.forEach((listItem, index) => {
+/*les_categories.forEach((listItem, index) => {
   listItem.addEventListener('mouseenter', () => {
     les_categories_names[index].classList.remove('innactive');
     les_categories_names[index].classList.add('active');
@@ -250,7 +250,43 @@ les_categories.forEach((listItem, index) => {
     loadCommentsByCategory(categoryId);
   });
 });
+*/
+les_categories.forEach((listItem, index) => {
+  listItem.addEventListener('mouseenter', () => {
+    if (!listItem.classList.contains('active')) {
+      les_categories_names[index].classList.remove('innactive');
+      les_categories_names[index].classList.add('active');
+    }
+  });
 
+  listItem.addEventListener('mouseleave', () => {
+    if (!listItem.classList.contains('active')) {
+      les_categories_names[index].classList.remove('active');
+      les_categories_names[index].classList.add('innactive');
+    }
+  });
+  listItem.addEventListener('click', () => {
+    les_categories.forEach((item, idx) => {
+      if (!listItem.classList.contains('active')){
+      item.classList.remove('active');
+      les_categories_names[idx].classList.remove('active');
+      les_categories_names[idx].classList.add('innactive');
+    }
+    else{
+      les_categories_names[idx].classList.remove('active');
+      les_categories_names[idx].classList.add('innactive');
+      loadAllComments(); 
+    }
+    });
+    listItem.classList.add('active');
+    les_categories_names[index].classList.remove('innactive');
+    les_categories_names[index].classList.add('active');
+
+    const categoryId = listItem.getAttribute('data-category-id');
+    console.log(`Loading comments for category ID: ${categoryId}`);
+    loadCommentsByCategory(categoryId);
+  });
+});
 
 
   newpostBackB.addEventListener('click', () => {
@@ -269,7 +305,7 @@ les_categories.forEach((listItem, index) => {
       addPost.classList.add('active');
       Textarea.value = '';
     }
-  });
+  });   
 
   document.querySelector('.help').addEventListener('click', () => {
     window.location.href = './help.html';
