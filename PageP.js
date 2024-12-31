@@ -275,7 +275,6 @@ les_categories.forEach((listItem, index) => {
     else{
       les_categories_names[idx].classList.remove('active');
       les_categories_names[idx].classList.add('innactive');
-      loadAllComments(); 
     }
     });
     listItem.classList.add('active');
@@ -283,7 +282,7 @@ les_categories.forEach((listItem, index) => {
     les_categories_names[index].classList.add('active');
 
     const categoryId = listItem.getAttribute('data-category-id');
-    console.log(`Loading comments for category ID: ${categoryId}`);
+
     loadCommentsByCategory(categoryId);
   });
 });
@@ -377,6 +376,10 @@ function searchbarFunction() {
   const nonMatchingPosts = posts.filter(post => !matchingPosts.includes(post));
   postsContainer.innerHTML = ''; 
   matchingPosts.forEach(post => postsContainer.appendChild(post)); 
-  nonMatchingPosts.forEach(post => postsContainer.appendChild(post)); 
+ // nonMatchingPosts.forEach(post => postsContainer.appendChild(post)); 
 }
 
+// user 
+document.querySelector('.cercle').addEventListener('click',()=>{
+  window.location.href='./userP.html'
+})
