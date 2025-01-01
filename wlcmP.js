@@ -111,14 +111,7 @@ LogFormButton.addEventListener('click', () => {
   }
 });
 
-closeButton.addEventListener("click", () => {
-  dialog.close();
-});
-dialog.addEventListener("click", (event) => {
-  if (event.target === dialog) {
-    dialog.close();
-  }
-});
+
 
 function FormEmail(email) {
   return email.endsWith("@gmail.com");

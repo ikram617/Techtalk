@@ -36,7 +36,7 @@ $conn->close();
 <html>
 <head>
 <link href="PageP.css?v=1.1" rel="stylesheet">
-<script src="PageP.js?v=1.1"></script>
+
   <title>TechTalk</title>
   <meta charset="UTF-8">
   <!-- <link href="./PageP.css" rel="stylesheet"> -->
@@ -133,7 +133,6 @@ $conn->close();
       </div>
     </div>
   </div>
-
-  <script src="./PageP.js"></script>
+<script src="PageP.js?v=1.1"></script>
 </body>
 </html>
