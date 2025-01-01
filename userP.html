@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="userP.css?v=1.1" rel="stylesheet">
+   <link href="userP.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <title>Your profile</title>
     <meta charset="UTF-8">
@@ -47,11 +47,20 @@
                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
             </div>
         </div>
-        <div class="resetBlock">
-            <span>Current password : </span>
-            <input type="text" required>
+        <div class="resetBlock innactive">
+            <div class="current">
+            <span>Current password :</span>
+            <input type="password" required>
+            </div>
+            <div class="new">
             <span>New password :</span>
-            <input type="text" required>
+            <input type="password" required>
+            </div>
+            <div class="buttons">
+                <button class="backpsw">Back</button>
+                <button class="validate">Validate</button>
+            </div>
+
         </div>
     </div>
     <script>
@@ -78,6 +87,6 @@
                 });
         });
     </script>
-    <script src="userP.js?v=1.1"></script>
+    <script src="userP.js"></script>
 </body>
 </html>

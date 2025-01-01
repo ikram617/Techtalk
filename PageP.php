@@ -35,11 +35,9 @@ $conn->close();
 <!DOCTYPE html>
 <html>
 <head>
-<link href="PageP.css?v=1.1" rel="stylesheet">
-
   <title>TechTalk</title>
   <meta charset="UTF-8">
-  <!-- <link href="./PageP.css" rel="stylesheet"> -->
+  <link href="./PageP.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Orbit&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <script>
@@ -133,6 +131,6 @@ $conn->close();
       </div>
     </div>
   </div>
-<script src="PageP.js?v=1.1"></script>
+<script src="PageP.js"></script>
 </body>
 </html>
