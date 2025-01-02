@@ -336,7 +336,22 @@ searchIcon.addEventListener('click',()=>{
       const commentId = postLikeContainer.querySelector('.comment_id').textContent;
       handleLikeDislike(commentId, 'dislike', postLikeContainer.querySelector('.likes'), event.target);
     }
-  });  
+  });
+  //change color like and dislike 
+  document.querySelector('.posts').addEventListener('click', (event) => {
+    if (event.target.classList.contains('fa-thumbs-up')) {
+      console.log('Thumbs up clicked');
+      const currentColor = window.getComputedStyle(event.target).color;
+      console.log('Current color:', currentColor);
+      event.target.style.color = currentColor === 'rgb(136, 136, 136)' ? 'rgb(0, 0, 0)' : 'rgb(136, 136, 136)';
+    } else if (event.target.classList.contains('fa-thumbs-down')) {
+      console.log('Thumbs down clicked');
+      const currentColor = window.getComputedStyle(event.target).color;
+      console.log('Current color:', currentColor);
+      event.target.style.color = currentColor === 'rgb(136, 136, 136)' ? 'rgb(0, 0, 0)' : 'rgb(136, 136, 136)';
+    }
+  });
+  
   
   // Gestion du bouton de déconnexion
   var logoutB = document.querySelector('.logout button');
@@ -366,5 +381,5 @@ function searchbarFunction() {
 
 // user 
 document.querySelector('.cercle').addEventListener('click',()=>{
-  window.location.href='./userP.html'
+  window.location.href='./userP.php'
 })

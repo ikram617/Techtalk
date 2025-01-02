@@ -11,21 +11,24 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    echo json_encode(['success' => false, 'message' => "Connection failed: " . $conn->connect_error]);
+    exit();
 }
 
 $userId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null; // Assuming user ID is stored in session
 
-echo "Request Method: " . $_SERVER['REQUEST_METHOD'] . "<br>"; // Debugging statement
-echo "User ID: " . $userId . "<br>"; // Debugging statement
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    if (!$userId) {
+        echo json_encode(['success' => false, 'message' => "User ID not found in session"]);
+        exit();
+    }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['oldPassword']) && isset($_POST['newPassword'])) {
-        $oldPassword = $_POST['oldPassword'];
-        $newPassword = $_POST['newPassword'];
+    if (isset($_GET['oldPassword']) && isset($_GET['newPassword'])) {
+        $oldPassword = $_GET['oldPassword'];
+        $newPassword = $_GET['newPassword'];
 
-        echo "Old Password: " . htmlspecialchars($oldPassword) . "<br>"; // Debugging statement
-        echo "New Password: " . htmlspecialchars($newPassword) . "<br>"; // Debugging statement
+        // Log the received passwords for debugging
+        echo json_encode(['success' => true, 'message' => "Received passwords", 'oldPassword' => $oldPassword, 'newPassword' => $newPassword]);
 
         // Check if old password is correct
         $sql = "SELECT password FROM users WHERE id = ?";
@@ -36,31 +39,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
-            echo "Password from DB: " . $row['password'] . "<br>"; // Debugging statement
+
+            // Log the password fetched from the database for debugging
+            echo json_encode(['success' => true, 'message' => "Password fetched from database", 'password_from_db' => $row['password']]);
 
             if (password_verify($oldPassword, $row['password'])) {
-                // Update with new password
+                // Log the verification success for debugging
+                echo json_encode(['success' => true, 'message' => "Old password verified successfully"]);
+
+                // Update with new hashed password
                 $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
                 $updateSql = "UPDATE users SET password = ? WHERE id = ?";
                 $updateStmt = $conn->prepare($updateSql);
                 $updateStmt->bind_param("si", $hashedPassword, $userId);
 
                 if ($updateStmt->execute()) {
-                    echo "Password updated successfully";
+                    echo json_encode(['success' => true, 'message' => "Password updated successfully"]);
                 } else {
-                    echo "Error updating password: " . $conn->error;
+                    echo json_encode(['success' => false, 'message' => "Error updating password: " . $conn->error]);
                 }
             } else {
-                echo "Old password is incorrect";
+                echo json_encode(['success' => false, 'message' => "Old password is incorrect"]);
             }
         } else {
-            echo "No user found with ID: " . $userId . "<br>"; // Debugging statement
+            echo json_encode(['success' => false, 'message' => "No user found with ID: " . $userId]);
         }
     } else {
-        echo "POST variables are not set";
+        echo json_encode(['success' => false, 'message' => "GET variables are not set", 'received_get_vars' => $_GET]);
     }
 } else {
-    echo "Invalid request method";
+    echo json_encode(['success' => false, 'message' => "Invalid request method", 'request_method' => $_SERVER['REQUEST_METHOD']]);
 }
 
 $conn->close();
