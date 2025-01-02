@@ -54,7 +54,7 @@
   flex-direction: column;
 }
 .infoProfile{
-    width: 70vw;
+    width: 80vw;
     height: 30vh;
     margin: 5%;
     background-color: #042C4C;
@@ -117,7 +117,7 @@
 }
 .resetBlock{
     width: 30vw;
-    height: 20vh;
+    height: 25vh;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -130,8 +130,15 @@
     border: 2px solid black;
     border-radius: 20px;
     padding: 15px;
+    align-items: stretch;
  }
-
+Form{
+    height: 15vh;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
 .current,
 .new{
     display: flex;

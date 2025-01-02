@@ -25,9 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     commentDiv.innerHTML = `
                         <div class="AffichePost">
-                            <div class="info">
+                          <div class="info">
+                            <div class="infoperso">
                                 <p class="username">${comment.username}</p>
-                                <p class="userField">${comment.field}</p>
+                                <p class="userField">${comment.field}</p>  </div>
                                 <p class="created_at">${comment.created_at}</p>
                             </div>
                             <hr style="height: 1px; border: none; background-color: black; width: 100%;">
@@ -51,3 +52,5 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error fetching comments:', error);
         });
 });
+
+

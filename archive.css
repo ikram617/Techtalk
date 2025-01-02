@@ -70,7 +70,35 @@
     word-wrap: break-word; 
     white-space: pre-wrap; 
 }
+.infoperso{
+  width: 40vw;
+  height: 5vh;
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+  padding: 1%;
+}
+.info{
+  display: flex;
+  flex-direction: column-reverse;
+  padding: 1%;
+}
 
+.userField{
+  font-weight: 100;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.likes {
+  position: absolute; 
+  top: 50%; 
+  transform: translateY(-50%); 
+  right: 10%; 
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 .likes i {
     font-size: 25px;
  
