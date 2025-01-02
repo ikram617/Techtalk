@@ -73,7 +73,6 @@
 
 .likes i {
     font-size: 25px;
-    cursor: pointer;
  
   }
   .fa-thumbs-up ,
@@ -81,3 +80,23 @@
     color :rgb(136, 136, 136);
   }
 
+  .postLike {
+    display: flex;
+    justify-content: center;
+    position: relative; 
+    width: 100%; 
+    margin-bottom: 20px; 
+    z-index: 5;
+}
+
+.AffichePost {
+  display: flex;
+  align-self: center;
+  height: auto;
+  min-height: 20vh;
+  width: 45vw;
+  background-color: #F5F5F5;
+  flex-direction: column;
+  box-shadow: 5px 5px 15px rgb(163, 158, 158);
+  position: relative; 
+}
