@@ -218,39 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   loadAllComments(); // Charger les commentaires au chargement de la page
 
- // Ajouter des écouteurs d'événement pour chaque catégorie
-/*les_categories.forEach((listItem, index) => {
-  listItem.addEventListener('mouseenter', () => {
-    les_categories_names[index].classList.remove('innactive');
-    les_categories_names[index].classList.add('active');
-  });
-
-  listItem.addEventListener('mouseleave', () => {
-    les_categories_names[index].classList.remove('active');
-    les_categories_names[index].classList.add('innactive');
-  });
-
-  listItem.addEventListener('click', () => {
-    // Désactiver toutes les catégories
-    les_categories.forEach((item, idx) => {
-      les_categories_names[idx].classList.remove('active');
-      item.classList.remove('active');
-    });
-
-    // Activer la catégorie cliquée
-    listItem.classList.add('active');
-    les_categories_names[index].classList.add('active');
-    
-    const categoryId = listItem.getAttribute('data-category-id');
-    const categoryText = listItem.querySelector('.Titres p').textContent.trim();
-    
-    console.log(`Category ID clicked: ${categoryId}`);
-    
-    // Charger les commentaires de la catégorie sélectionnée
-    loadCommentsByCategory(categoryId);
-  });
-});
-*/
+ // les caterogies
 les_categories.forEach((listItem, index) => {
   listItem.addEventListener('mouseenter', () => {
     if (!listItem.classList.contains('active')) {
@@ -340,17 +308,29 @@ searchIcon.addEventListener('click',()=>{
   //change color like and dislike 
   document.querySelector('.posts').addEventListener('click', (event) => {
     if (event.target.classList.contains('fa-thumbs-up')) {
-      console.log('Thumbs up clicked');
-      const currentColor = window.getComputedStyle(event.target).color;
-      console.log('Current color:', currentColor);
-      event.target.style.color = currentColor === 'rgb(136, 136, 136)' ? 'rgb(0, 0, 0)' : 'rgb(136, 136, 136)';
+        const currentColor = window.getComputedStyle(event.target).color;
+        const thumbsDown = event.target.parentElement.querySelector('.fa-thumbs-down');
+
+        if (currentColor === 'rgb(136, 136, 136)') {
+            event.target.style.color = 'rgb(0, 0, 0)'; 
+            thumbsDown.style.color = 'rgb(136, 136, 136)'; 
+        } else {
+            event.target.style.color = 'rgb(136, 136, 136)'; 
+        }
     } else if (event.target.classList.contains('fa-thumbs-down')) {
-      console.log('Thumbs down clicked');
-      const currentColor = window.getComputedStyle(event.target).color;
-      console.log('Current color:', currentColor);
-      event.target.style.color = currentColor === 'rgb(136, 136, 136)' ? 'rgb(0, 0, 0)' : 'rgb(136, 136, 136)';
+        const currentColor = window.getComputedStyle(event.target).color;
+        const thumbsUp = event.target.parentElement.querySelector('.fa-thumbs-up');
+
+        if (currentColor === 'rgb(136, 136, 136)') {
+            event.target.style.color = 'rgb(0, 0, 0)'; 
+            thumbsUp.style.color = 'rgb(136, 136, 136)'; 
+        } else {
+            event.target.style.color = 'rgb(136, 136, 136)'; 
+        }
     }
-  });
+});
+
+
   
   
   // Gestion du bouton de déconnexion
