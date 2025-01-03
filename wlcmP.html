@@ -71,6 +71,7 @@
                         </div>
                         <div class="form-group inputUsername">
                             <input type="text" name="username" placeholder="Username" required>
+                            <p class="usernameError" style="color: red; display: none;">Nom d'utilisateur déjà pris.</p>
                         </div>
                         <div class="form-group inputEmail">
                             <input type="email" name="email" placeholder="Email" class="emailSign" required>
@@ -138,6 +139,32 @@
                 console.error('Error:', error);
             });
         });
+
+        function verifierSign(FullName, Username, email, password, field) {
+            if (FullName.value === '' && Username.value === '' && email.value === '' && password.value === '' && field.value === "false") {
+                DialogTitre.textContent = 'Avertissement !';
+                DialogContext.textContent = 'Veuillez remplir le formulaire.';
+                dialog.showModal();
+                document.querySelector('.inputFullname').style.boxShadow = '0 0 8px red';
+                document.querySelector('.inputUsername').style.boxShadow = '0 0 5px red';
+                document.querySelector('.inputEmail').style.boxShadow = '0 0 5px red';
+                document.querySelector('.inputPassword').style.boxShadow = '0 0 5px red';
+                return 0;
+            } else if (isUsernameTaken(Username.value)) {
+                document.querySelector('.usernameError').style.display = 'block';
+                return 0;
+            } else {
+                document.querySelector('.usernameError').style.display = 'none';
+                // Autres vérifications de validation...
+                return 1;
+            }
+        }
+
+        function isUsernameTaken(username) {
+            // Cette fonction est un exemple. Vous devez la remplacer par la vérification réelle.
+            var takenUsernames = ["user1", "user2", "user3"]; // Exemple de tableau de noms d'utilisateur pris
+            return takenUsernames.includes(username);
+        }
     </script>
 </body>
 </html>

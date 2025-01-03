@@ -111,15 +111,12 @@ LogFormButton.addEventListener('click', () => {
   }
 });
 
-
-
 function FormEmail(email) {
   return email.endsWith("@gmail.com");
 }
 
 function verifierSign(FullName, Username, email, password, field) {
   if (FullName.value === '' && Username.value === '' && email.value === '' && password.value === '' && field.value === "false") {
-    
     DialogTitre.textContent = 'Warning!';
     DialogContext.textContent = 'Please fill in the form.';
     dialog.showModal();
@@ -128,10 +125,20 @@ function verifierSign(FullName, Username, email, password, field) {
     document.querySelector('.inputEmail').style.boxShadow = '0 0 5px red';
     document.querySelector('.inputPassword').style.boxShadow = '0 0 5px red';
     return 0;
+  } else if (isUsernameTaken(Username.value)) {
+    document.querySelector('.usernameError').style.display = 'block';
+    return 0;
   } else {
+    document.querySelector('.usernameError').style.display = 'none';
     // Other validation checks...
     return 1;
   }
+}
+
+function isUsernameTaken(username) {
+  // This is a placeholder function. You should replace this with the actual check.
+  var takenUsernames = ["user1", "user2", "user3"]; // Example array of taken usernames
+  return takenUsernames.includes(username);
 }
 
 function verifierLog(email, password) {
