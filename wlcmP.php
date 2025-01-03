@@ -21,10 +21,17 @@ if (isset($_POST['signup'])) {
         // Username already taken
         echo "<script>
                 alert('Username already taken. Please choose another one.');
-                window.location.href = '/sign-up.html'; // Replace with your sign-up page URL
+              window.location.href = '/Techtalk/wlcmP.php'; // Adjust the path based on your server's directory structure
+
               </script>";
     } else {
-        // SQL query to insert user data into the database
+     
+            // Username already taken
+            echo "<script>
+                    alert('Access successfully granted to TechTalk. Please log in using your username.');
+                  window.location.href = '/Techtalk/wlcmP.php'; // Adjust the path based on your server's directory structure
+    
+                  </script>";
         $sql = "INSERT INTO users (fullname, username, email, password, field) 
                 VALUES ('$fullname', '$username', '$email', '$hashedPassword', '$field')";
 
