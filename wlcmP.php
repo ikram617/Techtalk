@@ -20,7 +20,7 @@ if (isset($_POST['signup'])) {
     if ($result->num_rows > 0) {
         // Username already taken
         echo "<script>
-                alert('Nom d\'utilisateur déjà pris. Veuillez en choisir un autre.');
+                alert('Username already taken. Please choose another one.');
                 window.location.href = '/sign-up.html'; // Replace with your sign-up page URL
               </script>";
     } else {
@@ -30,10 +30,11 @@ if (isset($_POST['signup'])) {
 
         // Execute the query
         if ($conn->query($sql) === TRUE) {
-            echo "Sign-up successful!";
-            // Redirect to login page
-            header("Location: login.php");
-            exit();
+            echo "<script>
+                    document.getElementById('success-message').innerHTML = 'Inscription réussie !';
+                    document.getElementById('success-message').style.display = 'block';
+                    window.location.href = '/login.php'; // Replace with your success page URL
+                  </script>";
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
