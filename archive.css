@@ -71,7 +71,6 @@
     white-space: pre-wrap; 
 }
 .infoperso{
-  width: 40vw;
   height: 5vh;
   display: flex;
   justify-content: space-between;

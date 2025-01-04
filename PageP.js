@@ -41,8 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
           const likes = document.createElement('div');
           likes.classList.add('likes');
           likes.innerHTML = `
-            <i class="fa-regular fa-thumbs-up" data-liked="false"></i><span class="like-count">${comment.likes}</span>
-            <i class="fa-regular fa-thumbs-down" data-liked="false"></i><span class="dislike-count">${comment.dislikes}</span>
+            <i class="fa-regular fa-thumbs-up" data-liked="false"></i>
+            <i class="fa-regular fa-thumbs-down" data-liked="false"></i>
           `;
 
           likes.querySelector('.fa-thumbs-up').addEventListener('click', (event) => {
@@ -96,8 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const likes = document.createElement('div');
             likes.classList.add('likes');
             likes.innerHTML = `
-              <i class="fa-regular fa-thumbs-up" data-liked="false"></i><span class="like-count">${comment.likes}</span>
-              <i class="fa-regular fa-thumbs-down" data-liked="false"></i><span class="dislike-count">${comment.dislikes}</span>
+              <i class="fa-regular fa-thumbs-up" data-liked="false"></i>
+              <i class="fa-regular fa-thumbs-down" data-liked="false"></i>
             `;
   
             likes.querySelector('.fa-thumbs-up').addEventListener('click', (event) => {
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   // Fonction pour gérer les likes et dislikes
-  function handleLikeDislike(commentId, type, likesContainer, target) {
+ function handleLikeDislike(commentId, type, likesContainer, target) {
     console.log(`Sending data: comment_id=${commentId}, type=${type}`);
     const xhr = new XMLHttpRequest();
     xhr.open('POST', 'handle_likes_dislikes.php', true);
@@ -131,36 +131,35 @@ document.addEventListener('DOMContentLoaded', () => {
       if (xhr.status === 200) {
         const response = JSON.parse(xhr.responseText);
         if (response.success) {
-          // Mettre à jour les compteurs de likes et dislikes
-          const likeCount = likesContainer.querySelector('.like-count');
-          const dislikeCount = likesContainer.querySelector('.dislike-count');
-
           if (type === 'like') {
-            const thumbsUp = likesContainer.querySelector('.fa-thumbs-up');
-            const thumbsDown = likesContainer.querySelector('.fa-thumbs-down');
+            var thumbsUp = likesContainer.querySelector('.fa-thumbs-up');
+            var thumbsDown = likesContainer.querySelector('.fa-thumbs-down');
             if (thumbsUp.dataset.liked !== 'true') {
-              likeCount.textContent = parseInt(likeCount.textContent) + 1;
+              
+         //      var newvalLIke=parseInt(likeCount.textContent,10)+1 
+         //      console.log( newvalLIke)
+         //     likeCount.textContent = newvalLIke;
               if (thumbsDown.dataset.liked === 'true') {
-                dislikeCount.textContent = parseInt(dislikeCount.textContent) - 1;
+           //     dislikeCount.textContent = parseInt(dislikeCount.value) - 1;
                 thumbsDown.dataset.liked = 'false';
               }
               thumbsUp.dataset.liked = 'true';
             } else {
-              likeCount.textContent = parseInt(likeCount.textContent) - 1;
+              //likeCount.textContent = parseInt(likeCount.textContent,10) - 1;
               thumbsUp.dataset.liked = 'false';
             }
           } else if (type === 'dislike') {
             const thumbsUp = likesContainer.querySelector('.fa-thumbs-up');
             const thumbsDown = likesContainer.querySelector('.fa-thumbs-down');
             if (thumbsDown.dataset.liked !== 'true') {
-              dislikeCount.textContent = parseInt(dislikeCount.textContent) + 1;
+             // dislikeCount.textContent = parseInt(dislikeCount.textContent) + 1;
               if (thumbsUp.dataset.liked === 'true') {
-                likeCount.textContent = parseInt(likeCount.textContent) - 1;
+               // likeCount.textContent = parseInt(likeCount.textContent) - 1;
                 thumbsUp.dataset.liked = 'false';
               }
               thumbsDown.dataset.liked = 'true';
             } else {
-              dislikeCount.textContent = parseInt(dislikeCount.textContent) - 1;
+             // dislikeCount.textContent = parseInt(dislikeCount.textContent) - 1;
               thumbsDown.dataset.liked = 'false';
             }
           }
@@ -322,6 +321,7 @@ searchIcon.addEventListener('click',()=>{
         const thumbsUp = event.target.parentElement.querySelector('.fa-thumbs-up');
 
         if (currentColor === 'rgb(136, 136, 136)') {
+
             event.target.style.color = 'rgb(0, 0, 0)'; 
             thumbsUp.style.color = 'rgb(136, 136, 136)'; 
         } else {

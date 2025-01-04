@@ -24,8 +24,10 @@ if ($conn->connect_error) {
 
 $user_id = $_SESSION['user_id'];
 $sql = "SELECT users.username, users.field, comments.comment, comments.created_at, 
-        SUM(CASE WHEN comments_likes.type = 'like' THEN 1 ELSE 0 END) AS like_count,
-        SUM(CASE WHEN comments_likes.type = 'dislike' THEN 1 ELSE 0 END) AS dislike_count
+       -- SUM(CASE WHEN comments_likes.type = 'like' THEN 1 ELSE 0 END) AS like_count,
+       -- SUM(CASE WHEN comments_likes.type = 'dislike' THEN 1 ELSE 0 END) AS dislike_count
+        comments.like_count,
+        comments.dislike_count
         FROM comments
         JOIN users ON comments.user_id = users.id
         LEFT JOIN comments_likes ON comments.idc = comments_likes.comment_id
